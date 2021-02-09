@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="/css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+     <div class="grid">
+     <header>
+     <h1><a href="/" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+     </header>
+     <main style="clear:both;">
+     <nav>
+     <h3>Use Hyphen Delimited Strings</h3>
+     <p>If you write a lot of JavaScript, then writing variables in camel case is common practice.</p>
+     <pre><code>var redBox = document.getElementById('...')</code></pre>
+     <p>Great, right?</p>
+     <p>The problem is that this form of naming isn’t well-suited to CSS.</p>
+     <p>Do not do this:</p>
+     <pre><code>.redBox {  border: 1px solid red;}</code></pre>
+     <p>Instead, do this:</p>
+     <pre><code>.red-box {   border: 1px solid red;}</code></pre>
+     <p>This is a pretty standard CSS naming convention. It is arguably more readable.</p>
+     <p>Also, it is consistent with the CSS property names.</p>
+     <pre><code>// Correct</code></pre>
+     <pre><code>.some-class {   font-weight: 10em}</code></pre>
+     <pre><code>// Wrong</code></pre>
+     <pre><code>.some-class {   fontWeight: 10em}</code></pre>
+     <h3>The BEM Naming Convention</h3>
+     <p>Teams have different approaches to writing CSS selectors. Some teams use hyphen delimiters, while others prefer to use the more structured naming convention called BEM.</p>
+     <p>Generally, there are 3 problems that CSS naming conventions try to solve:</p>
+     <ol>
+     <li>To know what a selector does, just by looking at its name</li>
+     <li>To have an idea of where a selector can be used, just by looking at it</li>
+     <li>To know the relationships between class names, just by looking at them</li>
+     </ol>
+     <p>Have you ever seen class names written like this:</p>
+     <pre><code>.nav--secondary {  ...}</code></pre>
+     <pre><code>.nav__header {  ...}</code></pre>
+     <p>That is the BEM naming convention.</p>
+     <h3>Explaining BEM to a 5 year Old</h3>
+     <p>BEM attempts to divide the overall user interface into small reusable components.</p>
+     <p>Consider the image below:</p>
+     <figure><img src="https://www.cleartheme.com/images/1.jpg" width="200">
+     <figcaption>It is an award winning image of a stick-man :)</figcaption>
+     </figure>
+     <p>No, it’s not award winning :(</p>
+     <p>The stick-man represents a component, such as a block of design.</p>
+     <p>You may have already guessed that the B in BEM stands for ‘Block’.</p>
+     <p>In the real world, this ‘block’ could represent a site navigation, header, footer, or any other block of design.</p>
+     <p>Following the practice explained above, an ideal class name for this component would be <strong>stick-man</strong>.</p>
+     <p>The component should be styled like so:</p>
+     <pre><code>.stick-man {   }</code></pre>
+     <p>We have used delimited strings here. Good!</p>
+     <figure><img src="https://www.cleartheme.com/images/2.jpg" width="200"></figure>
+     <h3>E for Elements</h3>
+     <p>The E in ‘BEM’ stands for Elements.</p>
+     <p>Overall blocks of design rarely live in isolation.</p>
+     <p>For instance, the stick-man has a <strong>head</strong>, two gorgeous <strong>arms, and <strong>feet</strong>.</strong></p>
+     <figure><img src="https://www.cleartheme.com/images/3.jpg" width="200"></figure>
+     <p>The <strong>head</strong> , <strong>feet</strong>, and <strong>arms</strong> are all elements within the component. They may be seen as child components, i.e. children of the overall parent component.</p>
+     <p>Using the BEM naming convention, element class names are derived by adding <strong>two underscores, </strong>followed by the element name.</p>
+     <p>For example:</p>
+     <pre><code>.stick-man__head { }</code></pre>
+     <pre><code>.stick-man__arms { }</code></pre>
+     <pre><code>.stick-man__feet { }</code></pre>
+     <h3 id="m-for-modifiers">M for Modifiers</h3>
+     <p>The M in ‘BEM’ stands for Modifiers.</p>
+     <p>What if the stick-man was modified and we could have a <code>blue</code> or a <code>red</code> stick- man?</p>
+     <figure><img src="https://www.cleartheme.com/images/4.jpg" width="200"></figure>
+     <p>In the real world, this could be a <code>red</code> button or <code>blue</code> button. These are modifications of the component in question.</p>
+     <p>Using BEM, modifier class names are derived by adding two <strong>hyphens </strong>followed by the element name.</p>
+     <p>For example:</p>
+     <pre><code>.stick-man--blue { }</code></pre>
+     <pre><code>.stick-man--red { }</code></pre>
+     <p>The last example showed the parent component being modified. This is not always the case.</p>
+     <p>What if we had stick-men of different <code>head</code> sizes?</p>
+     <figure class="kg-card kg-image-card"><img src="https://www.cleartheme.com/images/5.jpg" width="200"></figure>
+     <p>This time the element has been modified. Remember, the element is a child component within the overall containing block.</p>
+     <p>The <code>.stick-man</code> represents the <strong>Block</strong> , <code>.stick-man__head</code> the element.</p>
+     <p>As seen in the example above, double hyphens may also be used like so:</p>
+     <pre><code>.stick-man__head--small { }</code></pre>
+     <pre><code>.stick-man__head--big { }</code></pre>
+     <p>Again, note the use of the double <strong>hyphens</strong> in the example above. This is used to denote a modifier.</p>
+     <p>Now you’ve got it.</p>
+     <p>That’s basically how the BEM naming convention works.</p>
+     <p>Personally, I tend to use only hyphen delimeter class names for simple projects, and BEM for more involved user interfaces.</p>
+     <p>You can <a href="http://getbem.com/naming/" rel="noopener">read more</a> about BEM.</p>
+     <p><a href="http://getbem.com/naming/" rel="noopener"><strong> BEM - Block Element Modifier</strong></a><br>
+     <a href="http://getbem.com/naming/" rel="noopener"><em> BEM - Block Element Modifier is a methodology, that helps you to achieve reusable components and code sharing in the…</em>getbem.com</a></p>
+     <h3>Why Use Naming Conventions?</h3>
+     <blockquote>There are only two hard problems in Computer Science: cache invalidation and naming things — <em>Phil Karlton</em></blockquote>
+     <p>Naming things is hard. We’re trying to make things easier, and save ourselves time in the future with more maintainable code.</p>
+     <p>Naming things correctly in CSS will make your code easier to read and maintain.</p>
+     <p>If you choose to use the BEM naming convention, it will become easier to see the relationship between your design components/blocks just by looking at the markup.</p>
+     <p>Feeling confident?</p>
+     <h3>CSS Names with JavaScript Hooks</h3>
+     <p>Today is John’s first day at work.</p>
+     <p>He is handed over an <strong>HTML</strong> code that looks like this:</p>
+     <pre><code>&lt;div class="siteNavigation"&gt;</code></pre>
+     <pre><code>&lt;/div&gt;</code></pre>
+     <p>John has read this article and realizes this may not be the best way to name things in <strong>CSS</strong>. So he goes ahead and refactors the codebase like so:</p>
+     <pre><code>&lt;div class="site-navigation"&gt;</code></pre><pre><code>&lt;/div&gt;</code></pre>
+     <p>Looks good, huh?</p>
+     <p>Unknown to John, he had broken the code-base ???</p>
+     <p>How?</p>
+     <p>Somewhere in the JavaScript code, there was a relationship with the previous class name, <strong>siteNavigation</strong>:</p>
+     <pre><code>//the Javasript code</code></pre>
+     <pre><code>const nav = document.querySelector('.siteNavigation')</code></pre>
+     <p>So, with the change in the class name, the <strong>nav</strong> variable became <strong>null</strong>.</p>
+     <p>How sad.</p>
+     <p>To prevent cases like this, developers have come up with different strategies.</p>
+     <h4>1. Use js- class names</h4>
+     <p>One way to mitigate such bugs is to use a <code><strong>js-*</strong></code><strong> </strong>class name to denote a relationship with the DOM element in question.</p>
+     <p>For example:</p>
+     <pre><code>&lt;div class="site-navigation js-site-navigation"&gt;</code></pre>
+     <pre><code>&lt;/div&gt;</code></pre>
+     <p>And in the JavaScript code:</p>
+     <pre><code>//the Javasript code</code></pre>
+     <pre><code>const nav = document.querySelector('.js-site-navigation')</code></pre>
+     <p>As a convention, anyone who sees the <code><strong>js-</strong>site-navigation</code> class name would understand that there is a relationship with that DOM element in the JavaScript code.</p>
+     <h4 id="2-use-the-rel-attribute">2. Use the Rel attribute</h4>
+     <p>I don’t use this technique myself, but I have seen people do.</p>
+     <p>Do you recognize this?</p>
+     <pre><code>&lt;link rel="stylesheet" type="text/css" href="main.css"&gt;</code></pre>
+     <p>Basically, the <strong>rel attribute</strong> defines the relationship that the linked resource has to the document from which it’s referenced.</p>
+     <p>In the previous example with John, proponents of this technique would do this:</p>
+     <pre><code>&lt;div class="site-navigation" rel="js-site-navigation"&gt;</code></pre>
+     <pre><code>&lt;/div&gt;</code></pre>
+     <p>And in the JavaScript:</p>
+     <pre><code>const nav = document.querySelector("[rel='js-site-navigation']")</code></pre>
+     <p>I have my doubts about this technique, but you’re likely to come across it in some code-bases. The claim here is, <em>“well, there’s a relationship with JavaScript, so I use the rel attribute to denote that”</em>.</p>
+     <p>The web is a big place with lots of different “methods” for solving the same problem.</p>
+     <h4 id="3-don-t-use-data-attributes">3. Don’t use data attributes</h4>
+     <p>Some developers use data attributes as JavaScript hooks. This isn’t right. By definition, data attributes are used <strong>to store custom data</strong>.</p>
+     <p><strong>Edit #1: As mentioned by some amazing people in the comment section, if people use the ‘rel’ attribute, then it’s perhaps okay to use data attributes in certain cases. It’s your call after all.</strong></p>
+     <h3>Bonus Tip: Write More CSS Comments</h3>
+     <p>This has nothing to do with naming conventions, but it will save you some time too.</p>
+     <p>While a lot of web developers try to NOT write JavaScript comments or stick to a few, I think you should write more CSS comments.</p>
+     <p>Since CSS isn’t the most elegant “language,” well-structured comments can save time when you’re trying to understand your code.</p>
+     <p>It doesn’t hurt.</p>
+     <p>Take a look at how well commented the Bootstrap <a href="https://github.com/twbs/bootstrap/blob/v4-dev/scss/_carousel.scss" rel="noopener">source code</a> is.</p>
+     <p>You do not need to write comments to say <strong>color: red</strong> will give a red color. But, if you’re using a CSS trick that is less obvious.</p>
+     </nav>
+     </main>
+     <footer>
+     <h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong> by <a href="https://www.cleartheme.com">ClearTheme</a>
+     </h5>
+     </footer>
+     </div>
+     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-177222023-1'); </script>
+     </body>
+</html>
