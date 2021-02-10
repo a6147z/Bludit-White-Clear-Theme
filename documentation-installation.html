@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+          <div class="grid">
+               <header>
+                    <h1><a href="" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+                    <h3>A simpler Occam's Razor theory of Shakuni's Evangel.</h3> 
+               </header>
+               <div class="categories">
+                    <div class="tag"><a href="category/CSS"> CSS </a></div>
+                    <div class="tag"><a href="category/folders"> Folders </a></div>
+                    <div class="tag"><a href="category/general"> General </a></div>
+                    <div class="tag"><a href="category/php"> PHP </a></div>
+               </div>              
+               <main style="clear:both;">
+                 <hr />
+                    <nav>
+                        
+                         <div id="bodyContent">
+                              <h1>File Structure</h1>
+                              <p>Inside the distribution, you will find the following file structure:</p>
+                              <pre>/htdocs/
+                                index.php
+                              /tinymvc/
+                                /myapp/
+                                /myfiles/
+                                /sysfiles/
+                              </pre>
+                              <h2>/htdocs/</h2>
+                              <p>This contains the files you should place into your web doc root, which is <em>index.php</em>.</p>
+                              <h2>/tinymvc/</h2>
+                              <p>This is the main directory for your TinyMVC install. It is recommended to place this outside of the document root.</p>
+                              <h3>/tinymvc/myapp/</h3>
+                              <p>This directory contains all the files for your application. Typically, this is the only directory you will be adding and editing files.</p>
+                              <h3>/tinymvc/myfiles/</h3>
+                              <p>This directory is only used in a shared installation. If you have multiple websites, you can share plugins between them by moving the plugin files from your <strong>/myapp/plugins/</strong> directory into <strong>/myfiles/plugins/</strong>. Single and shared installations are explained in the Installation guide.</p>
+                              <h3>/tinymvc/sysfiles/</h3>
+                              <p>This is the TinyMVC system files. You should never have to edit these. When you upgrade TinyMVC, this is the directory that gets upgraded.</p>
+                              <p></p>
+                              </div>
+                              <h1>Installing </h1>
+                              <h2>Quick "I just want to see it" Install</h2>
+                              <ul>
+                              <li>unpack the archive in your web doc root</li>
+                              <li>point your browser to the htdocs/index.php file</li>
+                              </ul>
+                              <p>You should see the welcome screen.</p>
+                              <h2>Single Installation (Typical)</h2>
+                              <p>This basically means a single website. If you are installing multiple websites and want the TinyMVC core codebase to be shared between them, then skip down to the Shared installation.</p>
+                              <p>Unpack the distribution archive in a temporary place. You will see the following structure:</p>
+                              <pre>/htdocs/
+                                index.php
+                              
+                              /tinymvc/
+                                /myapp/
+                                /myfiles/
+                                /sysfiles/
+                              </pre>
+                              <ul>
+                              <li><b>Place the index.php file inside your web server document root.</b></li>
+                              </ul>
+                              <p>The <i>index.php</i> file is the file directly accessed by the web browser. No other files are required inside the doc root.</p>
+                              <ul>
+                              <li><b>Place the /tinymvc/ directory (and contents) outside your web server document root.</b></li>
+                              </ul>
+                              <p>The <i>/tinymvc/</i> directory holds all of the system files and application files. It is recommended (but not required) to place this directory somewhere outside of your web server document root.</p>
+                              <div id="ynote">
+                              <p>If you decide to place this in your doc root, be sure to restrict browser access to <i>/tinymvc/</i> with your web server configuration.</p>
+                              </div>
+                              <p>Example install:</p>
+                              <pre>/var/www.foo.com/htdocs/
+                                index.php
+                              
+                              /var/www.foo.com/tinymvc/
+                                /myapp/
+                                /myfiles/
+                                /sysfiles/
+                              </pre>
+                              <ul>
+                              <li><b>Edit the index.php file and set configuration options.</b></li>
+                              </ul>
+                              <p>Inside the index.php file, you will find the following:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* PHP error reporting level */</span>
+                              <span style="color: #808080; font-style: italic;">//error_reporting(E_ALL);</span>
+                               
+                              <span style="color: #808080; font-style: italic;">/* if your /tinymvc/ dir is not up one directory, uncomment and set here */</span>
+                              <span style="color: #808080; font-style: italic;">//define('TMVC_BASEDIR','../tinymvc/');</span></pre>
+                              <p>If necessary, uncomment and set the php reporting level. For development, you might want to enable all error reporting with <b>E_ALL</b>.</p>
+                              <p>If necessary, uncomment and set the <b>TMVC_BASEDIR</b> path, which is the path to where you installed the <i>/tinymvc/</i> directory. If this is located one directory up from the <i>index.php</i> file, the default setting should work.</p>
+                              <div id="ynote">
+                              <p>Be sure to include a trailing slash.</p>
+                              </div>
+                              <p>Once you are finished, take your browser to <a href="http://web.archive.org/web/20190112073917/http://localhost/index.php" class="external free" rel="nofollow">http://localhost/index.php</a> (or wherever the index.php file is on your web server). You should see a welcome screen. If not, check the error messages, and check your data paths and configuration settings again.</p>
+                              <h2><span class="mw-headline" id="Database_Settings"> Database Settings </span></h2>
+                              <p>If you are using a database, be sure you edit your database settings here:</p>
+                              <pre>/tinymvc/
+                                /myapp/
+                                  /configs/
+                                    config_database.php
+                              </pre>
+                              <p>database.php:</p>
+                              <pre class="php"><span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'plugin'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'TinyMVC_PDO'</span>; <span style="color: #808080; font-style: italic;">// plugin for db access</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'type'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'mysql'</span>;      <span style="color: #808080; font-style: italic;">// connection type</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'host'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'localhost'</span>;  <span style="color: #808080; font-style: italic;">// db hostname</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'name'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'dbname'</span>;     <span style="color: #808080; font-style: italic;">// db name</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'user'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'dbuser'</span>;     <span style="color: #808080; font-style: italic;">// db username</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'pass'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'dbpass'</span>;     <span style="color: #808080; font-style: italic;">// db password</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'persistent'</span><span style="color: #66cc66;">]</span> = <span style="color: orange; font-weight: bold;">false</span>;  <span style="color: #808080; font-style: italic;">// db connection persistence?</span></pre>
+                              <p>You can have multiple database connection settings. "default" is the name of the default connection. To make new settings, copy all seven lines and make a new setting name.</p>
+                              <p>Leave the plugin setting as <b>TinyMVC_PDO</b>, unless you are using your own custom database library. Set the <b>type</b>, <b>host</b>, <b>name</b>, <b>user</b>, <b>pass</b> and <b>persistent</b> settings according to your database server.</p>
+                              <h2><span class="mw-headline" id="Shared_Installation"> Shared Installation </span></h2>
+                              <p>Each website has it's own index.php file and /myapp/ directory associated with it. The websites can share the main TinyMVC code base. This way TinyMVC upgrades are done in one place.</p>
+                              <div id="ynote">
+                              <p>The <b>/sysfiles/</b> directory is what you update when you upgrade TinyMVC, it should never be touched. The <b>/myfiles/</b> directory is where you can place custom plugins that you want shared across websites.</p>
+                              </div>
+                              <p>For each website, you will install a separate <i>index.php</i> file and <i>/myapp/</i> directory.</p>
+                              <ul>
+                              <li><b>Install the /tinymvc/ directory in a central location.</b></li>
+                              <li><b>Copy the index.php file under the doc root.</b></li>
+                              <li><b>Copy the /myapp/ directory out of the /tinymvc/ directory to a place that coincides with the index.php file.</b></li>
+                              <li><b>Edit index.php set the TMVC_BASEDIR and TMVC_MYAPPDIR path.</b></li>
+                              </ul>
+                              <p>Example setup for three different websites:</p>
+                              <pre># shared code
+                              /usr/local/lib/tinymvc/
+                                /myfiles/
+                                /sysfiles/
+                              
+                              #website 1
+                              /var/www.foo1.com/htdocs/index.php
+                              /var/www.foo1.com/myapp/
+                              
+                              #website 2
+                              /var/www.foo2.com/htdocs/index.php
+                              /var/www.foo2.com/myapp/
+                              
+                              #website 3
+                              /var/www.foo3.com/htdocs/index.php
+                              /var/www.foo3.com/myapp/
+                              </pre>
+                              <p><br>For each website, edit the <i>index.php</i> file and set the path to <b>TMVC_BASEDIR</b> and <b>TMVC_MYAPPDIR</b>. Example:</p>
+                              <p>index.php:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* TinyMVC base library path */</span>
+                              <a href="http://web.archive.org/web/20190112073917/http://www.php.net/define"><span style="color: #000066;">define</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'TMVC_BASEDIR'</span>,<span style="color: #ff0000;">'/usr/local/lib/tinymvc/'</span><span style="color: #66cc66;">)</span>;
+                               
+                              <span style="color: #808080; font-style: italic;">/* application library path */</span>
+                              <a href="http://web.archive.org/web/20190112073917/http://www.php.net/define"><span style="color: #000066;">define</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'TMVC_MYAPPDIR'</span>,<span style="color: #ff0000;">'../myapp/'</span><span style="color: #66cc66;">)</span>;</pre>
+                              <div id="ynote">
+                              <p>Be sure to include a trailing slash.</p>
+                              <strong>Controllers: <span class="mw-headline" id="What_is_a_controller.3F">What is a controller? </span></strong>
+                              <div id="bodyContent">
+                              <p>Controller files are what glue the application together. They load models, display views, and tie in the plugins and application library code. They are the content traffic cops, so to speak.</p>
+                              <p>A typical URL to a TinyMVC page looks like this:</p>
+                              <pre>http://[host]/index.php/[controller]/[action]/[param1]/[param2]/[param3...]
+                              </pre>
+                              <p>Where <b>controller</b> is the name of the controller file/class, and <b>action</b> is the method name of the controller class you want to access. Values beyond that are used as parameters for your application. So, a real URL might look something like:</p>
+                              <pre>http://localhost/index.php/hello/intro/name/joe
+                              </pre>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <p>Controller files live in the controllers directory. Lets create a controller:</p>
+                              <pre>/myapp/
+                                /controllers/
+                                  hello.php
+                              </pre>
+                              <p><b>hello.php:</b></p>
+                              <pre class="php"><span style="color: orange; font-weight: bold;">class</span> Hello_Controller <span style="color: orange; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: orange; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <a href="http://web.archive.org/web/20190105210824/http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #ff0000;">"Hello World."</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <div id="ynote">
+                              <p>Ideally, controllers do not contain echo statements or any direct output of content. The above is a crude demonstration of a controller echoing instead of using a view. More complete and accurate examples are in the Views section of the documentation, so just keep reading before you implement!</p>
+                              </div>
+                              <p></p>
+                              <div id="ynote">
+                              <p>The controller name in the URL is case sensitive, and without the <i>.php</i> extension.<br>The class name prefix (<i>prefix</i>_Controller) must match the controller file name,<br>although it can be any case.</p>
+                              </div>
+                              <p>Now lets take a look at this. Direct your browser to:</p>
+                              <pre>http://localhost/index.php/hello
+                              </pre>
+                              <div id="ynote">
+                              <p>Be sure to use your installation path to <i>index.php</i></p>
+                              </div>
+                              <p>You should see the text <i>"Hello World."</i> in your browser.</p>
+                              <div id="ynote">
+                              <p>If you do not supply a controller name in the URL, <i>default</i> is assumed.<br>You can change which controller is default in the <i>/myapp/configs/application.php</i> file.</p>
+                              </div>
+                              <div id="ynote">
+                              <p>For brevity, we have echoed output right from the controller. Normally this output would come from a view, which we will cover in the next chapter.</p>
+                              </div>
+                              <p>Now, lets, create a new method in the controller class:</p>
+                              <p><b>hello.php:</b></p>
+                              <pre class="php"><span style="color: orange; font-weight: bold;">class</span> Hello_Controller <span style="color: orange; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: orange; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <a href="http://web.archive.org/web/20190105210824/http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #ff0000;">"Hello World."</span>;
+                                <span style="color: #66cc66;">}</span>
+                                <span style="color: orange; font-weight: bold;">function</span> <a href="http://web.archive.org/web/20190105210824/http://www.php.net/time"><span style="color: #000066;">time</span></a><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <a href="http://web.archive.org/web/20190105210824/http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #ff0000;">"The time is now."</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Now lets see it in the browser:</p>
+                              <pre>http://localhost/index.php/hello/time
+                              </pre>
+                              <p>As you can see, appending the method name to the URL brings up the corresponding method output from the controller.</p>
+                              <div id="ynote">
+                              <p>If no method name is in the URL, the method <i>index</i> is assumed.</p>
+                              </div>
+                              <div id="ynote">
+                              <p>You can get rid of <i>index.php</i> in the URL with the following Apache rewrite rule:</p>
+                              <pre>RewriteEngine On
+                              RewriteCond %{REQUEST_FILENAME} !-f
+                              RewriteCond %{REQUEST_FILENAME} !-d
+                              RewriteRule ^(.*)$ index.php/$1 [L]
+                              </pre>
+                              <p>This goes in an .htaccess file in your document directory, or in your apache config.</p>
+                              <p>Now you can access the hello controller with just <i><a href="http://web.archive.org/web/20190105210824/http://localhost/hello" class="external free" rel="nofollow">http://localhost/hello</a></i> in the URL.</p>
+                              <p>That will rewrite everything that is not a real file or directory on the server to your <i>index.php</i>. Be sure you create a <i>robots.txt</i> file so that does not get redirected when webcrawlers visit. Also create a <i>favicon.ico</i> file so browsers don't get a redirect when trying to load a favicon.</p>
+                              </div>
+                              <h2><span class="mw-headline" id="Default_Controller"> Default Controller </span></h2>
+                              <p>If no controller is given in the URL, by default TinyMVC uses the 'default' controller and 'index' action. You can change that here:</p>
+                              <pre>/tinymvc/
+                                /myapp/
+                                  /configs/
+                                    config_application.php
+                              </pre>
+                              <p>application.php:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* name of default controller/method when none is given in the URL */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default_controller'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'mycontroller'</span>;
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'default_action'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'myaction'</span>;</pre>
+                              <h2><span class="mw-headline" id="Root_Controller"> Root Controller </span></h2>
+                              <p>If you want to force all pages through a specific controller regardless of what is in the URL, you specify that here:</p>
+                              <pre>/tinymvc/
+                                /myapp/
+                                  /configs/
+                                    config_application.php
+                              </pre>
+                              <p>application.php:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* set this to force controller and method instead of using URL params */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'root_controller'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'myroot'</span>;
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'root_action'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'myaction'</span>;</pre>
+                              <div id="ynote">
+                              <p>The root controller will take precedence over the default controller.</p>
+                              </div>
+                              <h2><span class="mw-headline" id="URL_Routing"> URL Routing </span></h2>
+                              <p>You can route/map URLs to other URLs through the route mapping function. This is a simple array of search/replace parameters. Use syntax compatible with preg_replace().</p>
+                              <pre>/tinymvc/
+                                /myapp/
+                                  /configs/
+                                    config_application.php
+                              </pre>
+                              <p>application.php:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* URL routing, use preg_replace() compatible syntax */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'routing'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'search'</span><span style="color: #66cc66;">]</span> =  <a href="http://web.archive.org/web/20190105210824/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'!/foo/(<span style="color: #000099; font-weight: bold;">\d</span>+)!'</span><span style="color: #66cc66;">)</span>;  <span style="color: #808080; font-style: italic;">// example route /foo/123 to /foo/index/123</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'routing'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'replace'</span><span style="color: #66cc66;">]</span> = <a href="http://web.archive.org/web/20190105210824/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/foo/index/${1}'</span><span style="color: #66cc66;">)</span>;</pre>
+                              <p>
+                              <script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+                              </p>
+                              <h2><span class="mw-headline" id="What_is_a_view.3F"> What is a view? </span></h2>
+                              <p>View files contain the final presentation elements for your content, such as HTML markup and style sheets.</p>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <p>View files live in the views directory. Lets create a view:</p>
+                              <pre>/myapp/
+                                /views/
+                                  hello_view.php
+                              </pre>
+                              <div id="ynote">
+                              <p>It is recommended, but not required, to append <i>_view</i> to your view file names.<br>This makes it easier to distinguish view files from other types of files in your editor.</p>
+                              </div>
+                              <p><b>hello_view.php</b></p>
+                              <pre class="html4strict"><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/html.html"><span style="color: #ffffff; font-weight: bold;">&lt;html&gt;</span></a></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/head.html"><span style="color: #ffffff; font-weight: bold;">&lt;head&gt;</span></a></span><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/title.html"><span style="color: #ffffff; font-weight: bold;">&lt;title&gt;</span></a></span>Hello<span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/title&gt;</span></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/head&gt;</span></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/body.html"><span style="color: #ffffff; font-weight: bold;">&lt;body&gt;</span></a></span>
+                                  Hello World.
+                                <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/body&gt;</span></span>
+                              <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/html&gt;</span></span></pre>
+                              <p><br>To see the view file, we call it from within the controller.</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <div id="ynote">
+                              <p>Always provide the view filename without the <i>.php</i> extension.</p>
+                              </div>
+                              <p>Load the page in your browser:</p>
+                              <pre>http://localhost/index.php/hello
+                              </pre>
+                              <p>You should see the contents of the hello_view file (view browser source):</p>
+                              <pre class="html4strict"><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/html.html"><span style="color: #ffffff; font-weight: bold;">&lt;html&gt;</span></a></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/head.html"><span style="color: #ffffff; font-weight: bold;">&lt;head&gt;</span></a></span><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/title.html"><span style="color: #ffffff; font-weight: bold;">&lt;title&gt;</span></a></span>Hello<span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/title&gt;</span></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/head&gt;</span></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/body.html"><span style="color: #ffffff; font-weight: bold;">&lt;body&gt;</span></a></span>
+                                  Hello World.
+                                <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/body&gt;</span></span>
+                              <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/html&gt;</span></span></pre>
+                              <h2><span class="mw-headline" id="Capture_view_output_to_a_variable"> Capture view output to a variable </span></h2>
+                              <p>To assign the output of the view to a variable, use <b>$this-&gt;view-&gt;fetch()</b>.</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$output</span> = <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">fetch</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <h2><span class="mw-headline" id="Assigning_variables_to_the_view"> Assigning variables to the view </span></h2>
+                              <p>There are several ways to assign vars to the view. The first method is using assign().</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'title'</span>,<span style="color: #ff0000;">'Hello'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'body_text'</span>,<span style="color: #ff0000;">'Hello World.'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p><b>hello_view.php</b></p>
+                              <pre class="html4strict"><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/html.html"><span style="color: #ffffff; font-weight: bold;">&lt;html&gt;</span></a></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/head.html"><span style="color: #ffffff; font-weight: bold;">&lt;head&gt;</span></a></span><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/title.html"><span style="color: #ffffff; font-weight: bold;">&lt;title&gt;</span></a></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;</span>?=$title?<span style="color: #ffffff; font-weight: bold;">&gt;</span></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/title&gt;</span></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/head&gt;</span></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/body.html"><span style="color: #ffffff; font-weight: bold;">&lt;body&gt;</span></a></span>
+                                  <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;</span>?=$body_text?<span style="color: #ffffff; font-weight: bold;">&gt;</span></span>
+                                <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/body&gt;</span></span>
+                              <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/html&gt;</span></span></pre>
+                              <p>You should see exactly the same output, but this time some of the content was assigned (view browser source):</p>
+                              <pre class="html4strict"><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/html.html"><span style="color: #ffffff; font-weight: bold;">&lt;html&gt;</span></a></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/head.html"><span style="color: #ffffff; font-weight: bold;">&lt;head&gt;</span></a></span><span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/title.html"><span style="color: #ffffff; font-weight: bold;">&lt;title&gt;</span></a></span>Hello<span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/title&gt;</span></span><span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/head&gt;</span></span>
+                                <span style="color: #009900;"><a href="http://web.archive.org/web/20190113232537/http://december.com/html/4/element/body.html"><span style="color: #ffffff; font-weight: bold;">&lt;body&gt;</span></a></span>
+                                  Hello World.
+                                <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/body&gt;</span></span>
+                              <span style="color: #009900;"><span style="color: #ffffff; font-weight: bold;">&lt;/html&gt;</span></span></pre>
+                              <p>You can also assign arrays of data instead of key/value:</p>
+                              <pre class="php"><span style="color: #0000ff;">$data</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'title'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'Hello'</span>;
+                              <span style="color: #0000ff;">$data</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'body_text'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'Hello world.'</span>;
+                              <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$data</span><span style="color: #66cc66;">)</span>;</pre>
+                              <p></p>
+                              <div id="ynote">
+                              <p>When you assign variables with <b>$this-&gt;view-&gt;assign()</b>, it internally collects the values in the <b>$this-&gt;view-&gt;view_vars</b> property array, which is automatically extracted to every view.</p>
+                              </div>
+                              <p>The variables assigned with <b>$this-&gt;view-&gt;assign()</b> are always available to every view thereafter. If you want variables assigned to only the current <b>$this-&gt;view-&gt;display()</b> call, you can pass the vars as the second parameter.</p>
+                              <pre class="php"><span style="color: #0000ff;">$data</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'title'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'Hello'</span>;
+                              <span style="color: #0000ff;">$data</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'body_text'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'Hello world.'</span>;
+                              <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span>,<span style="color: #0000ff;">$data</span><span style="color: #66cc66;">)</span>;</pre>
+                              <p></p>
+                              <div id="ynote">
+                              <p>For brevity, this example assigns text directly from the controller. To maintain proper MVC separation, content should come from view files, models (database) or other sources such as config files or libraries. As a rule of thumb, you should never have to edit a controller or model PHP file to change the presentation.</p>
+                              <p>
+                              <script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+                              </p>
+                              <h2><span class="mw-headline" id="What_is_a_model.3F"> What is a model? </span></h2>
+                              <p>Models are the layer of the MVC that are used to aggregate data. The underlying data source is typically a database, although this can be any type of source such as a flat file.</p>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <p>Model files live in the models directory. Lets create a model:</p>
+                              <pre>/myapp/
+                                /models/
+                                  page_model.php
+                              </pre>
+                              <p><b>page_model.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Page_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_title<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #ff0000;">'Hello'</span>;
+                                <span style="color: #66cc66;">}</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_body_text<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #ff0000;">'Hello World.'</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <div id="ynote">
+                              <p>The model file name must match the model class name. The class can be any case, but the file name must be lower case.<br>The <i>_model</i> extension is not required, but it helps keep things organized.</p>
+                              </div>
+                              <p>We load models from within the controller. Lets try an example:</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #808080; font-style: italic;">// load the model</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">load</span>-&gt;<span style="color: #006600;">model</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'Page_Model'</span>,<span style="color: #ff0000;">'page'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #808080; font-style: italic;">// alternately, specify the connection pool (default is "default")</span>
+                                  <span style="color: #808080; font-style: italic;">// $this-&gt;load-&gt;model('Page_Model','page',null,'mypool');</span>
+                               
+                                  <span style="color: #808080; font-style: italic;">// use the model to gather data</span>
+                                  <span style="color: #0000ff;">$title</span> = <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">page</span>-&gt;<span style="color: #006600;">get_title</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$body_text</span> = <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">page</span>-&gt;<span style="color: #006600;">get_body_text</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                               
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'title'</span>,<span style="color: #0000ff;">$title</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'body_text'</span>,<span style="color: #0000ff;">$body_text</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>The first parameter to <b>$this-&gt;load-&gt;model()</b> is the model class name. The second parameter is an optional alias name. This loads the model into a class property, then you use it to gather data. If you kept the same view file from the previous chapter, you should see the same result except this time the assigned data came from a model.</p>
+                              <h2><span class="mw-headline" id="Using_the_PDO_database_layer"> Using the PDO database layer </span></h2>
+                              <p>TinyMVC uses the PDO database abtraction layer for database access, which is included with PH5 5.1 and up. Be sure you have your <b>myapp/configs/database.php</b> setup for your database.</p>
+                              <p>Lets try an example:</p>
+                              <p><b>members_model.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">query</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'select * from members'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #b1b100;">while</span><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$row</span> = <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">next</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                                    <span style="color: #0000ff;">$results</span><span style="color: #66cc66;">[</span><span style="color: #66cc66;">]</span> = <span style="color: #0000ff;">$row</span>;
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$results</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Assuming you have a database with a table named members, the above get_members() method would return all the records in the members table.</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_member<span style="color: #66cc66;">(</span><span style="color: #0000ff;">$id</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">query_one</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'select * from members where id=?'</span>,<a href="http://web.archive.org/web/20190113231528/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$id</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>The above gets one record from the database. This example shows how to use a variable passed into the method as a query parameter. <b>query_one()</b> returns one record.</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">query_all</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'select * from members'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p><b>query_all()</b> returns all records from a query. This is essentially the same as the first query() example.</p>
+                              <p>You can optionally pass a format value of <b>PDO::FETCH_ASSOC</b>, <b>PDO::FETCH_NUM</b>, or <b>PDO::FETCH_BOTH</b>. <b>PDO::FETCH_ASSOC</b> is default.</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">select</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo,bar,baz'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// set selected columns</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">from</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'mytable'</span><span style="color: #66cc66;">)</span>;  <span style="color: #808080; font-style: italic;">// set from what table(s)</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">where</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo'</span>,<span style="color: #ff0000;">'test'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// where foo='test'</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">orwhere</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo=? and bar=?'</span>,<a href="http://web.archive.org/web/20190113231528/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'test'</span>,<span style="color: #ff0000;">'test2'</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span> <span style="color: #808080; font-style: italic;">// where foo='test' and bar='test2'</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">join</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'jointable'</span>,<span style="color: #ff0000;">'mytable'</span>,<span style="color: #ff0000;">'jointable.foo=mytable.foo'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// join tables on (optional) condition</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">in</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'mycolumn'</span>,<span style="color: #0000ff;">$elements</span>,<span style="color: #0000ff;">$islist</span>,<span style="color: #0000ff;">$prefix</span><span style="color: #66cc66;">)</span> <span style="color: #808080; font-style: italic;">// IN clause: column, elements (comma-separated or array), $list=boolean is list or array, $prefix: AND|OR</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">orderby</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'ordercolumn'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// order by column(s)</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">groupby</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'groupbycolumn'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// group by column(s)</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">limit</span><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$limit</span>,<span style="color: #0000ff;">$offset</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// query limit, optional offset</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">query</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #b1b100;">while</span><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$row</span> = <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">next</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span> <span style="color: #66cc66;">{</span>
+                                    <span style="color: #0000ff;">$rows</span><span style="color: #66cc66;">[</span><span style="color: #66cc66;">]</span> = <span style="color: #0000ff;">$row</span>;
+                                  <span style="color: #66cc66;">}</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$rows</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>The model wrapper allows you to build your query programmatically, much like active record.</p>
+                              <p></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">query_all</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'select * from members where foo=? and bar=?'</span>,<a href="http://web.archive.org/web/20190113231528/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'test'</span>,<span style="color: #ff0000;">'test2'</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>The ? syntax passes arguments to the query which are automatically sql-escaped. ?'s can also be used in other functions such as where() and orwhere().</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">where</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo'</span>,<span style="color: #ff0000;">'bar'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// setup query conditions (optional)</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">update</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'tablename'</span>,<a href="http://web.archive.org/web/20190113231528/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'col1'</span>=&gt;<span style="color: #ff0000;">'value'</span>,<span style="color: #ff0000;">'col2'</span>=&gt;<span style="color: #ff0000;">'value'</span>,...<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Update a table with the update() command.</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">insert</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'tablename'</span>,<a href="http://web.archive.org/web/20190113231528/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'col1'</span>=&gt;<span style="color: #ff0000;">'value'</span>,<span style="color: #ff0000;">'col2'</span>=&gt;<span style="color: #ff0000;">'value'</span>,...<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Insert into a table with the insert() command.</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">where</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'id != 1'</span><span style="color: #66cc66;">)</span>; <span style="color: #808080; font-style: italic;">// setup query conditions (optional)</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">delete</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'tablename'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Delete from a table with the delete() command.</p>
+                              <p><br>Available functions:</p>
+                              <ul>
+                              <li><b>$this-&gt;db-&gt;query($sql,$params)</b> executes a query to loop over results with <b>$this-&gt;db-&gt;next()</b></li>
+                              <li><b>$this-&gt;db-&gt;query_one($sql,$params,$format)</b> returns one result record</li>
+                              <li><b>$this-&gt;db-&gt;query_all($sql,$params,$format)</b> returns all result records</li>
+                              <li><b>$this-&gt;db-&gt;next($format)</b> used to loop over a result set</li>
+                              <li><b>$this-&gt;db-&gt;last_insert_id()</b> gets the last insert id from the database</li>
+                              <li><b>$this-&gt;db-&gt;num_rows()</b> returns the number of records from the last query</li>
+                              </ul>
+                              <h2><span class="mw-headline" id="Access_PDO_object_directly"> Access PDO object directly </span></h2>
+                              <p>If you want to use the PDO object directly, it is available as <b>$this-&gt;db-&gt;pdo</b>. This way you can take full advantage of all of the PDO features, but you must abide by its syntax and rules. Example:</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Members_Model <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Model
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> get_members<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$results</span> = <span style="color: #ffffff; font-weight: bold;">null</span>;
+                                  try <span style="color: #66cc66;">{</span>
+                                    <span style="color: #b1b100;">foreach</span> <span style="color: #66cc66;">(</span><span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">pdo</span>-&gt;<span style="color: #006600;">query</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'SELECT * from members'</span><span style="color: #66cc66;">)</span> <span style="color: #b1b100;">as</span> <span style="color: #0000ff;">$row</span><span style="color: #66cc66;">)</span>
+                                      <span style="color: #0000ff;">$results</span><span style="color: #66cc66;">[</span><span style="color: #66cc66;">]</span> = <span style="color: #0000ff;">$row</span>;
+                                    <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">db</span>-&gt;<span style="color: #006600;">pdo</span> = <span style="color: #ffffff; font-weight: bold;">null</span>;
+                                  <span style="color: #66cc66;">}</span> catch <span style="color: #66cc66;">(</span>PDOException <span style="color: #0000ff;">$e</span><span style="color: #66cc66;">)</span> <span style="color: #66cc66;">{</span>
+                                    <a href="http://web.archive.org/web/20190113231528/http://www.php.net/trigger_error"><span style="color: #000066;">trigger_error</span></a><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$e</span>-&gt;<span style="color: #006600;">getMessage</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                    <span style="color: #b1b100;">return</span> <span style="color: #ffffff; font-weight: bold;">false</span>;
+                                  <span style="color: #66cc66;">}</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #0000ff;">$results</span>;    
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>
+                              <script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+                              </p>
+                              <h1><span class="mw-headline" id="What_is_a_plugin.3F"> What is a plugin? </span></h1>
+                              <p>Plugins are how you extend the functionality of the framework. The two currently available plugin types are <b>libraries</b> and <b>scripts</b>. Libraries contain a PHP class that gets instantiated, whereas scripts are just PHP scripts that get included.</p>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <h3><span class="mw-headline" id="Loading_a_library"> Loading a library </span></h3>
+                              <p>Plugin files live in the /myapp/plugins/ directory. Lets create a library plugin called <b>demo</b>:</p>
+                              <pre>/myapp/
+                                /plugins/
+                                  tinymvc_library_demo.php
+                              </pre>
+                              <div id="ynote">
+                              <p>The file name and class name must match. The filename must be all lower-case, but the class name can be any case.</p>
+                              </div>
+                              <p><b>tinymvc_library_demo.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> TinyMVC_Library_Demo <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> test<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #ff0000;">"This is a test."</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p><br>To use our new plugin, we load it in the controller.</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">load</span>-&gt;<span style="color: #006600;">library</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'demo'</span>,<span style="color: #ff0000;">'mydemo'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'output'</span>, <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">mydemo</span>-&gt;<span style="color: #006600;">test</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <div id="ynote">
+                              <p>The second parameter is the alias for the property name, which is optional.</p>
+                              </div>
+                              <p>You should now have a variable <i>$output</i> in your view with the demo test output.</p>
+                              <h3><span class="mw-headline" id="Loading_a_script"> Loading a script </span></h3>
+                              <p>Lets create a script plugin called <b>myhelpers</b>:</p>
+                              <pre>/myapp/
+                                /plugins/
+                                  tinymvc_script_myhelpers.php
+                              </pre>
+                              <div id="ynote">
+                              <p>The script name must be lower-case.</p>
+                              </div>
+                              <p><b>tinymvc_script_myhelpers.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">function</span> esc<span style="color: #66cc66;">(</span><span style="color: #0000ff;">$string</span><span style="color: #66cc66;">)</span>
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #b1b100;">return</span> <a href="http://web.archive.org/web/20190112034853/http://www.php.net/htmlentities"><span style="color: #000066;">htmlentities</span></a><span style="color: #66cc66;">(</span><span style="color: #0000ff;">$string</span><span style="color: #66cc66;">)</span>;
+                              <span style="color: #66cc66;">}</span>
+                              <span style="color: #ffffff; font-weight: bold;">function</span> anchor<span style="color: #66cc66;">(</span><span style="color: #0000ff;">$url</span>,<span style="color: #0000ff;">$text</span><span style="color: #66cc66;">)</span>
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #b1b100;">return</span> <span style="color: #ff0000;">"&lt;a href=<span style="color: #000099; font-weight: bold;">\"</span>$url<span style="color: #000099; font-weight: bold;">\"</span>&gt;$text&lt;/a&gt;"</span>;
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p><br>To use our new plugin, we load it in the controller.</p>
+                              <p><b>/myapp/controller/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">load</span>-&gt;<span style="color: #006600;">script</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'myhelpers'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>The PHP functions in the script are now available to your view files.</p>
+                              <div id="ynote">
+                              <p>Libraries and scripts can optionally be autoloaded.</p>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              <p>Custom Database Plugin</p>
+                              <p>If want to use something other than the built-in PDO database plugin, do the following:</p>
+                              <p>Assuming your database plugin is named <b>MYDB</b>:</p>
+                              <ul>
+                              <li>copy <b>tinymvc_pdo.php</b> from <i>/sysfiles/plugins/tinymvc_pdo.php</i> to <i>/myapp/plugins/tinymvc_mydb.php</i></li>
+                              <li>edit the file, rename the class from <b>TinyMVC_PDO</b> to <b>TinyMVC_MYDB</b>.</li>
+                              <li>edit the functionality to your liking</li>
+                              <li>edit <i>/myapp/configs/database.php</i>, change the plugin name to <b>MYDB</b>.</li>
+                              </ul>
+                              <h1>Extending TinyMVC Plugins:URI Library: URI</h1>
+                              <pre><span style="color: #ffff00; font-weight: bold;">&lt;?php</span>
+                              <span style="color: #808080; font-style: italic;">
+                               example usage: 
+                               
+                               $this-&gt;load-&gt;library('uri');
+                               // gets third segment from URI
+                               $this-&gt;uri-&gt;segment(3);
+                               // get key/val associative array starting with the third segment
+                               $uri = $this-&gt;uri-&gt;uri_to_assoc(3);
+                               // assign params to an indexed array, starting with third segment
+                               $uri = $this-&gt;uri-&gt;uri_to_array(3);
+                               
+                               ***/</span>
+                               
+                                
+                              <span style="color: #ffff00; font-weight: bold;">class</span> TinyMVC_Library_URI <span style="color: #66cc66;">{</span>
+                               
+                                <span style="color: #ffff00; font-weight: bold;">var</span> <span style="color: #ffffff;">$path</span> = <span style="color: #ffff00; font-weight: bold;">null</span>;
+                               
+                                <span style="color: #ffff00; font-weight: bold;">function</span> __construct<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">if</span><span style="color: #66cc66;">(</span>!<a href="http://web.archive.org/web/20181210040456/http://www.php.net/empty"><span style="color: #ffff66;">empty</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$_SERVER</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">'PATH_INFO'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span> <span style="color: #66cc66;">{</span>
+                                    <span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span> = <a href="http://web.archive.org/web/20181210040456/http://www.php.net/explode"><span style="color: #ffff66;">explode</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">'/'</span>,<span style="color: #ffffff;">$_SERVER</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">'PATH_INFO'</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">)</span>;
+                                    <span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span> = <a href="http://web.archive.org/web/20181210040456/http://www.php.net/array_slice"><span style="color: #ffff66;">array_slice</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span>,<span style="color: #cc66cc;">2</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #66cc66;">}</span>
+                                <span style="color: #66cc66;">}</span>
+                               
+                                <span style="color: #ffff00; font-weight: bold;">function</span> segment<span style="color: #66cc66;">(</span><span style="color: #ffffff;">$index</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">if</span><span style="color: #66cc66;">(</span>!<a href="http://web.archive.org/web/20181210040456/http://www.php.net/empty"><span style="color: #ffff66;">empty</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$index</span><span style="color: #cc66cc;">-1</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                                    <span style="color: #b1b100;">return</span> <span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$index</span><span style="color: #cc66cc;">-1</span><span style="color: #66cc66;">]</span>;
+                                  <span style="color: #b1b100;">else</span> 
+                                    <span style="color: #b1b100;">return</span> <span style="color: #ffff00; font-weight: bold;">false</span>;
+                                <span style="color: #66cc66;">}</span>
+                               
+                                <span style="color: #ffff00; font-weight: bold;">function</span> uri_to_assoc<span style="color: #66cc66;">(</span><span style="color: #ffffff;">$index</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #ffffff;">$assoc</span> = <a href="http://web.archive.org/web/20181210040456/http://www.php.net/array"><span style="color: #ffff66;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #b1b100;">for</span><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$x</span> = <a href="http://web.archive.org/web/20181210040456/http://www.php.net/count"><span style="color: #ffff66;">count</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">)</span>, <span style="color: #ffffff;">$y</span>=<span style="color: #ffffff;">$index</span><span style="color: #cc66cc;">-1</span>; <span style="color: #ffffff;">$y</span>&lt;<span style="color: #ffffff;">$x</span>; <span style="color: #ffffff;">$y</span>+=<span style="color: #cc66cc;">2</span><span style="color: #66cc66;">)</span>
+                                  <span style="color: #66cc66;">{</span>
+                                    <span style="color: #ffffff;">$assoc_idx</span> = <span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$y</span><span style="color: #66cc66;">]</span>;
+                                    <span style="color: #ffffff;">$assoc</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$assoc_idx</span><span style="color: #66cc66;">]</span> = <a href="http://web.archive.org/web/20181210040456/http://www.php.net/isset"><span style="color: #ffff66;">isset</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$y</span><span style="color: #cc66cc;">+1</span><span style="color: #66cc66;">]</span><span style="color: #66cc66;">)</span> ? <span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">[</span><span style="color: #ffffff;">$y</span><span style="color: #cc66cc;">+1</span><span style="color: #66cc66;">]</span> : <span style="color: #ffff00; font-weight: bold;">null</span>;
+                                  <span style="color: #66cc66;">}</span>
+                                  <span style="color: #b1b100;">return</span> <span style="color: #ffffff;">$assoc</span>;
+                                <span style="color: #66cc66;">}</span>
+                               
+                                <span style="color: #ffff00; font-weight: bold;">function</span> uri_to_array<span style="color: #66cc66;">(</span><span style="color: #ffffff;">$index</span>=<span style="color: #cc66cc;">0</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #b1b100;">if</span><span style="color: #66cc66;">(</span><a href="http://web.archive.org/web/20181210040456/http://www.php.net/is_array"><span style="color: #ffff66;">is_array</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                                    <span style="color: #b1b100;">return</span> <a href="http://web.archive.org/web/20181210040456/http://www.php.net/array_slice"><span style="color: #ffff66;">array_slice</span></a><span style="color: #66cc66;">(</span><span style="color: #ffffff;">$this</span>-&gt;<span style="color: #006600;">path</span>,<span style="color: #ffffff;">$index</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #b1b100;">else</span>
+                                    <span style="color: #b1b100;">return</span> <span style="color: #ffff00; font-weight: bold;">false</span>;
+                                <span style="color: #66cc66;">}</span>
+                               
+                              <span style="color: #66cc66;">}</span>
+                               
+                              <span style="color: #ffff00; font-weight: bold;">?&gt;</span></pre>
+                              <p>Custom Error Handler</p>
+                              <p>To setup a custom error handler, do the following:</p>
+                              <p>Assuming your error handler class is named <b>My_ErrorHandler</b>:</p>
+                              <ul>
+                              <li>copy <b>tinymvc_errorhandler.php</b> from <i>/sysfiles/plugins/tinymvc_errorhandler.php</i> to <i>/myapp/plugins/my_errorhandler.php</i></li>
+                              <li>edit the file, rename the class from <b>TinyMVC_ErrorHandler</b> to <b>My_ErrorHandler</b>.</li>
+                              <li>edit the functionality to your liking</li>
+                              <li>edit <i>/myapp/configs/application.php</i>, change the error handler to <b>My_ErrorHandler</b>.</li>
+                              </ul>
+                              <h1>Integrating a Template Engine</h1>
+                              <p>Although a template engine is not necessary, you may wish to integrate a template engine you like to use. In the following example, we'll demonstrate how to integrate <a href="http://smarty.php.net/" class="external text">Smarty</a> as the view layer. We do this by loading the Smarty class as a library.</p>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <p>First, we'll show the quick and dirty method, with everything in the controller.</p>
+                              <p>Make sure you have Smarty installed and setup properly. For our Example, we put it here:</p>
+                              <pre>/var/smarty/
+                                /libs/
+                                  Smarty.class.php
+                                  ...
+                                /templates/
+                                /templates_c/
+                                /configs/
+                                /cache/
+                              </pre>
+                              <p><b>myapp/controllers/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #808080; font-style: italic;">// important so the TinyMVC and Smarty autoloaders work together!</span>
+                                  <a href="http://web.archive.org/web/20190112024206/http://www.php.net/define"><span style="color: #000066;">define</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'SMARTY_SPL_AUTOLOAD'</span>, <span style="color: #cc66cc;">1</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #808080; font-style: italic;">// load smarty class file</span>
+                                  <span style="color: #b1b100;">require</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/libs/Smarty.class.php'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #808080; font-style: italic;">// instantiate the library</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">load</span>-&gt;<span style="color: #006600;">library</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'Smarty'</span>,<span style="color: #ff0000;">'smarty'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #808080; font-style: italic;">// configure Smarty</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">setTemplateDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/templates/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">setCompileDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/templates_c/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">setConfigDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/configs/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">setCacheDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/cache/'</span><span style="color: #66cc66;">)</span>;
+                               
+                                  <span style="color: #808080; font-style: italic;">// now just use smarty for the view layer</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo'</span>,<span style="color: #ff0000;">'bar'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view.tpl'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <div id="ynote">
+                              <p>If a library classname already exists, TinyMVC will not try to load a plugin file for it.</p>
+                              </div>
+                              <p>Now this is a lot of code in the controller, and you will probably want to use Smarty elsewhere. So the more flexible solution is to create a library wrapper:</p>
+                              <p><b>myapp/plugins/tinymvc_library_smarty_wrapper.php</b></p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">// important so the TinyMVC and Smarty autoloaders work together!</span>
+                              <a href="http://web.archive.org/web/20190112024206/http://www.php.net/define"><span style="color: #000066;">define</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'SMARTY_SPL_AUTOLOAD'</span>, <span style="color: #cc66cc;">1</span><span style="color: #66cc66;">)</span>;
+                               
+                              <span style="color: #808080; font-style: italic;">// require the Smarty class</span>
+                              <span style="color: #b1b100;">require</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/libs/Smarty.class.php'</span><span style="color: #66cc66;">)</span>;
+                               
+                              <span style="color: #ffffff; font-weight: bold;">class</span> TinyMVC_Library_Smarty_Wrapper <span style="color: #ffffff; font-weight: bold;">Extends</span> Smarty
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> __construct<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  parent::__construct<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">setTemplateDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/templates/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">setCompileDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/templates_c/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">setConfigDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/configs/'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">setCacheDir</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'/var/smarty/cache/'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p><b>myapp/controllers/hello.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">load</span>-&gt;<span style="color: #006600;">library</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'Smarty_Wrapper'</span>,<span style="color: #ff0000;">'smarty'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #808080; font-style: italic;">// now just use smarty for the view layer</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">assign</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'foo'</span>,<span style="color: #ff0000;">'bar'</span><span style="color: #66cc66;">)</span>;
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">smarty</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view.tpl'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Now you can load and use Smarty with one line of code in your controller. Optionally, you can autoload the Smarty_Wrapper library in the <i>/myapp/configs/autoload.conf</i> file.</p>
+                              <p>Getting an Instance</p>
+                              <p>There may be times you need to get an instance of the current object, such as within a library, so you can use the controller functions. You can get an instance at any time:</p>
+                              <pre class="php"><span style="color: #0000ff;">$tmvc</span> = tmvc::<span style="color: #006600;">instance</span><span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                               
+                              <span style="color: #0000ff;">$myvars</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'foo'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'bar'</span>;
+                              <span style="color: #0000ff;">$myvars</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'baz'</span><span style="color: #66cc66;">]</span> = <span style="color: #ff0000;">'gaz'</span>;
+                               
+                              <span style="color: #0000ff;">$output</span> = <span style="color: #0000ff;">$tmvc</span>-&gt;<span style="color: #006600;">controller</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">fetch</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'some_view'</span>,<span style="color: #0000ff;">$myvars</span><span style="color: #66cc66;">)</span>;</pre>
+                              <h2><span class="mw-headline" id="Available_Properties"> Available Properties </span></h2>
+                              <p>The TinyMVC instance has these properties available:</p>
+                              <pre>$tmvc-&gt;controller // the current controller object
+                              $tmvc-&gt;action // the current controller method being used
+                              $tmvc-&gt;url_segments // the array of segments from the url path_info
+                              $tmvc-&gt;config // the loaded config array
+                              </pre>
+                              <p><span class="mw-headline" id="Autoloading_Plugins"> Autoloading Plugins </span></p>
+                              <p>Instead of using <b>$this-&gt;load-&gt;library()</b> and <b>$this-&gt;load-&gt;script()</b> in your controllers, you can have them autoloaded. Then they are always available to every controller.</p>
+                              <p><b>myapp/configs/config_autoload.php</b></p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* auto-loaded libraries */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'libraries'</span><span style="color: #66cc66;">]</span> = <a href="http://web.archive.org/web/20190112012809/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'mylib'</span>,<span style="color: #ff0000;">'myotherlib'</span><span style="color: #66cc66;">)</span>;
+                               
+                              <span style="color: #808080; font-style: italic;">/* auto-loaded scripts */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'scripts'</span><span style="color: #66cc66;">]</span> = <a href="http://web.archive.org/web/20190112012809/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'myhelpers'</span>,<span style="color: #ff0000;">'myscripts'</span><span style="color: #66cc66;">)</span>;</pre>
+                              <p>Just add your plugins to the autoload arrays.</p>
+                              <p>If you want to alias an autoloaded library, use an array:</p>
+                              <pre class="php"><span style="color: #808080; font-style: italic;">/* auto-loaded libraries */</span>
+                              <span style="color: #0000ff;">$config</span><span style="color: #66cc66;">[</span><span style="color: #ff0000;">'libraries'</span><span style="color: #66cc66;">]</span> = <a href="http://web.archive.org/web/20190112012809/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span>
+                                <a href="http://web.archive.org/web/20190112012809/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'mylib'</span>,<span style="color: #ff0000;">'myalias'</span><span style="color: #66cc66;">)</span>,
+                                <a href="http://web.archive.org/web/20190112012809/http://www.php.net/array"><span style="color: #000066;">array</span></a><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'myotherlib'</span>,<span style="color: #ff0000;">'otheralias'</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">)</span>;</pre>
+                              <h2><span class="mw-headline" id="Learning_by_example"> Learning by example </span></h2>
+                              <p>Lets extend the TinyMVC_Controller class:</p>
+                              <p><b>myapp/plugins/my_controller.php</b></p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> My_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> TinyMVC_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> __construct<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  parent::__construct<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                                <span style="color: #808080; font-style: italic;">// do your class extensions here</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p>Then in your controllers, just extend your custom controller:</p>
+                              <pre class="php"><span style="color: #ffffff; font-weight: bold;">class</span> Hello_Controller <span style="color: #ffffff; font-weight: bold;">extends</span> My_Controller
+                              <span style="color: #66cc66;">{</span>
+                                <span style="color: #ffffff; font-weight: bold;">function</span> index<span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                                <span style="color: #66cc66;">{</span>
+                                  <span style="color: #0000ff;">$this</span>-&gt;<span style="color: #006600;">view</span>-&gt;<span style="color: #006600;">display</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">'hello_view'</span><span style="color: #66cc66;">)</span>;
+                                <span style="color: #66cc66;">}</span>
+                              <span style="color: #66cc66;">}</span></pre>
+                              <p></p>
+                              <div id="ynote">
+                              <p>You do not need to include your extension file, TinyMVC will autoload it so long as it is named <b>classname</b>.php in the plugins directory.</p>
+                              </div>
+                              <p>The same procedure applies for extending TinyMVC_Model and TinyMVC_View.</p> 
+                        
+                        
+    <hr /></nav>
+</main>
+        <aside>
+            <img src="https://avatars2.githubusercontent.com/u/71543232??&amp;s=460" alt="Dinesh Bishnoi" href="/"
+                class="profilepic" width="100px" height="100px">
+            <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+                <span itemprop="name"><strong>Dinesh Bishnoi</strong></span>
+                <span itemprop="jobtitle" style="display:block">Watchman</span>
+                <div itemprop="addressCountry" style="display:block">India</span>
+                </div>
+                <a rel="me" href="https://facebook.com/din.bish">Facebook</a> - <a href="https://github.com/a6147z">Github</a>
+           </div>
+       </aside><hr />
+       <footer><h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. 
+        Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong>by <a href="https://www.cleartheme.com">ClearTheme</a></h5>
+    </footer></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'UA-177222023-1');</script>
+</body>
+</html>

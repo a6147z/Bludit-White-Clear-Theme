@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+          <div class="grid">
+               <header>
+                    <h1><a href="" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+                    <h3>A simpler Occam's Razor theory of Shakuni's Evangel.</h3> 
+               </header>
+               <div class="categories">
+                    <div class="tag"><a href="category/CSS"> CSS </a></div>
+                    <div class="tag"><a href="category/folders"> Folders </a></div>
+                    <div class="tag"><a href="category/general"> General </a></div>
+                    <div class="tag"><a href="category/php"> PHP </a></div>
+               </div>              
+               <main style="clear:both;">
+                 <hr />
+                    <nav>
+                        
+                         <h4>Engine and charset</h4>
+                         <p>Engine is always MyISAM except in special case when required different. All databases must use UTF8 charset.</p>
+                         <h4>Database</h4>
+                         <p>Database name must have the same name as project name. If the project name is "My Web Site" database should be created as:</p>
+                         <p><code>CREATE DATABASE mywebsite DEFAULT CHARSET UTF8;</code></p>
+                         <h4>Tables</h4>
+                         <p>All tables must be UTF8 encoded. All tables in the same package must have prefix. Use 2 or 3 letters that describe the package to prefix database. If the project name is Real Deal Marketing, the most obvious prefix will be "rdm_";</p>
+                         <p><code>CREATE TABLE rdm_affiliates;</code></p>
+                         <h4>ALTER TABLE and file versions major.minor[.build[.revision]]</h4>
+                         <p>All alterations for all tables should be saved in a <em>(database_name).sql</em> file. If database name is "realdealmarketing" filename should be realdealmarketing-1.0.0.sql</p>
+                         <ol>
+                         <li>Initial file must be version 1.0.0</li>
+                         <li>If there are only <b>table alterations</b> file should have new version increased by 0.0.1 Example: <em>realdealmarketing-1.0.7.sql</em></li>
+                         <li>If <b>new tables are created</b>, version must be increased by 0.1. Example: <em>realdealmarketing-1.2.0.sql</em></li>
+                         <li>If <b>tables are dropped</b>, version must be increased by 1.0. Example: <em>realdealmarketing-2.0.0.sql</em></li>
+                         <li>All <b>minor revisions</b> should have appropriate file name and version following this pattern: <em>major.minor[.build[.revision]]</em></li>
+                         <li>All versions should be saved in the same directory</li>
+                         </ol>
+                         <h4>Fields</h4>
+                         <p>This section explains how to create database table fields and how to choose name for each field.</p>
+                         <h5>Field Names</h5>
+                         <ol>
+                         <li>Field names must be prefixed with 2-4 letters of table name.</li>
+                         <li>Field names are always lowercase with "_" to separate words</li>
+                         </ol>
+                         <h6>Example</h6>
+                         <p><code>DROP TABLE IF EXISTS rdm_affiliates;
+                         CREATE TABLE IF NOT EXISTS rdm_affiliates
+                         (
+                           <b>aff_</b>id 		INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                           <b>aff_</b>url 		VARCHAR(120) NOT NULL DEFAULT '',
+                           <b>aff_</b>title 		VARCHAR(120) NOT NULL DEFAULT '',
+                           <b>aff_</b>website 	CHAR(10) NOT NULL DEFAULT '',
+                           <b>aff_</b>gender 		CHAR(8) NOT NULL DEFAULT '',
+                           <b>aff_</b>landing_page	VARCHAR(120) NOT NULL DEFAULT '',
+                           <b>aff_</b>link 		VARCHAR(120) NOT NULL DEFAULT '',
+                           <b>aff_</b>text 		TEXT,
+                           PRIMARY KEY (aff_id),
+                           INDEX (aff_website)
+                         ) 
+                         ENGINE=MyISAM  DEFAULT CHARSET=utf8;</code></p>
+                         <p>All field names must be descriptive, avoid names like "unique", "sort" and reserved words.</p>
+                         <h5>NULL and DEFAULT</h5>
+                         <p>All fields except AUTO_INCREAMENT, TEXT, DATE (and similar) must be defined as <b>NOT NULL DEFAULT</b> 'value'</p>
+                         <p>Examples:</p>
+                         <p><code>aff_title 		VARCHAR(120) <b>NOT NULL DEFAULT ''</b>
+                         aff_gender 		               ENUM('male','female') <b>NOT NULL DEFAULT 'male'</b>
+                         user_id 		              INT UNSIGNED <b>NOT NULL DEFAULT 0</b>
+                         user_birthday		       DATE DEFAULT NULL
+                         user_allow_newsletter	TINYINT(1) UNSIGNED <b>NOT NULL DEFAULT 0</b>
+                         art_text		               TEXT
+                         </code></p>
+                         <h4>Indices</h4>
+                         <p>All fields in WHERE and ORDER BY should be defined as INDEX. If you have query like this:</p>
+                         <p><code>SELECT * FROM table1 WHERE a='something' ORDER BY b</code></p>
+                         <p>Then fields a, b should be considered as indices</p>
+                         <p><code>INDEX index_name (a,b)</code></p>
+                         <h5>CHAR Indices</h5>
+                         <p>If text field (CHAR, VARCHAR) is used as index for larger tables (&gt; 5000 records) should be always defined as CHAR. For example, if you have fields like this:</p>
+                         <p><code>aff_url <b>VARCHAR(255)</b> NOT NULL DEFAULT ''
+                         ...
+                         INDEX afiliate_url (aff_url)</code></p>
+                         <p>To improve performance, this table should be changed to something like this</p>
+                         <p><code>aff_url <b>CHAR(20)</b> NOT NULL DEFAULT ''
+                         ...
+                         INDEX afiliate_url (aff_url)</code></p>
+                         <h4>Queries</h4>
+                         <p>Reserved words should be uppercase to increase readability. Also try to separate long queries in multiple lines, while simple queries should stay in one line. Example:</p>
+                         <p><code><b>SELECT</b> a.field_name1, a.field_name2, <b>COUNT</b>(a.field3) AS cnt, b.*
+                              <b>FROM</b> table1 <b>AS</b> a
+                              <b>LEFT JOIN</b> table2 <b>AS</b> b <b>ON</b> (a.key_field = b.key_field)
+                              <b>RIGHT JOIN</b> table3 <b>AS</b> c <b>ON</b> (a.key_field2 = c.key_field2)
+                              <b>WHERE</b> a.field7 = 'something here' <b>AND</b> b.field9 = '45'
+                              <b>GROUP BY</b> a.field_name1
+                              <b>ORDER BY</b> a.field_name2 <b>DESC</b>, b.field8
+                              <b>HAVING</b> cnt &gt; 5</code></p>
+                         <h5>Escape</h5>
+                         <p>Always escape values in WHERE even when value is integer</p>
+                         <h5>PHP variables in queries</h5>
+                         <p>PHP variables must be defined and escaped before query.</p>
+                         <h6>Avoid:</h6>
+                         <p><code>$q = "SELECT * FROM users WHERE email='<b>"._escape($_POST['email'])."</b>' ";</code></p>
+                         <h6>Use:</h6>
+                         <p><code>$email = _escape($_POST['email']);
+                         if (empty($email))
+                         {
+                              return false;
+                         }
+                         $q = "SELECT * FROM users WHERE email='<b>{$email}</b>' ";</code></p>
+                         <h3>PHPMyAdmin</h3>
+                         <p>Try to avoid PHP My Admin for table creation because it has problems with default values. It's great product for browsing and simple database manipulation but it makes you lazy and you usually forget to keep history of table alteration and other changes.</p>          
+                        
+                        
+    <hr /></nav>
+</main>
+        <aside>
+            <img src="https://avatars2.githubusercontent.com/u/71543232??&amp;s=460" alt="Dinesh Bishnoi" href="/"
+                class="profilepic" width="100px" height="100px">
+            <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+                <span itemprop="name"><strong>Dinesh Bishnoi</strong></span>
+                <span itemprop="jobtitle" style="display:block">Watchman</span>
+                <div itemprop="addressCountry" style="display:block">India</span>
+                </div>
+                <a rel="me" href="https://facebook.com/din.bish">Facebook</a> - <a href="https://github.com/a6147z">Github</a>
+           </div>
+       </aside><hr />
+       <footer><h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. 
+        Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong>by <a href="https://www.cleartheme.com">ClearTheme</a></h5>
+    </footer></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'UA-177222023-1');</script>
+</body>
+</html>

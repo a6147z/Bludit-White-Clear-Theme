@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+          <div class="grid">
+               <header>
+                    <h1><a href="" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+                    <h3>A simpler Occam's Razor theory of Shakuni's Evangel.</h3> 
+               </header>
+               <div class="categories">
+                    <div class="tag"><a href="category/CSS"> CSS </a></div>
+                    <div class="tag"><a href="category/folders"> Folders </a></div>
+                    <div class="tag"><a href="category/general"> General </a></div>
+                    <div class="tag"><a href="category/php"> PHP </a></div>
+               </div>              
+               <main style="clear:both;">
+                 <hr />
+                    <nav>
+                        
+            <p>General rules for CSS naming and formatting.</p>
+<h3>CSS Naming Convention</h3>
+<h4>Selector Names</h4>
+<p>Use "camelCase" names</p>
+<pre><code>&lt;style type="text/css"&gt;
+.title 		{ font-size: 2em; }
+.firstClass		{ font-size: 80%; }
+.someOtherClass	{ font-size: 80%; }
+&lt;/style&gt;
+</code></pre>
+<p>Try to avoid using attributes in the name. For example if you have</p>
+<pre>&lt;code"&gt;.red { color: red; }
+...
+&lt;span class="red"&gt;Some text&lt;/span&gt;
+</pre>
+<p>The output will look like this: <span style="color: red;">Some text</span>. And then you (or somebody else) decide to change color to something else, for example blue:</p>
+<pre><code>.red { color: blue; }</code></pre>
+<p>You will end up with HTML code that says <b>class="red"</b> while output is like this: <span style="color: blue;">Some text</span>, which is nonsense, of course. It is much better to have more generic names for classes like that, for example: emphasis, highlighted, standout...</p>
+<p><code>.emphasis { color: red; }
+...
+&lt;span class="emphasis"&gt;Some text&lt;/span&gt;</code></p>
+<p>And no matter if you change color to red, blue, or whatever... you will never had nonsense in HTML code and output like explained above.</p>
+<h4>Common selector names</h4>
+<p>Use ID's: header, footer, content, wrapper, inner, outer, container... Names like: html, head, bottom, top, left, right, should not be used for document layout.</p>
+<h4>Use HTML tags</h4>
+<p>Try to use as many HTML tags as possible. Instead of:</p>
+<pre>&lt;code"&gt;div.maintitle { font-size:2em; color:orange; }
+...
+&lt;div class="maintitle"&gt;Some text&lt;/div&gt;
+</pre>
+<p>You should always consider using title tags: H1, H2 ... H6</p>
+<p><code>H1 { font-size:2em; color:orange; }
+...
+&lt;h1&gt;Some text&lt;/h1&gt;
+</code></p>
+<p>If you want to have different style in different selectors, you can do it like this</p>
+<p><code>H1 { font-size:2em; color:orange; }
+#header H1 { font-size:1.2em; border-bottom:1px solid #e0e0e0; }
+...
+&lt;div id="header"&gt;&lt;h1&gt;Header title&lt;/h1&gt;&lt;/div&gt;
+...
+&lt;h1&gt;Some text&lt;/h1&gt;
+</code></p>
+<h4>Reset</h4>
+<p>You can reset some HTML tags like this</p>
+<p><code>h1, h2, h3, h4, h5, h6 { margin: 0.5em 0; padding: 0; font-weight: normal; }</code></p>
+<p>But avoid resetting common attributes like margins for P, H1, H2, ... If you need &lt;P&gt; with no margins it is much better to define new class</p>
+<p><code>P.myClass { margin: 0; padding: 0; }
+...
+&lt;p class="myClass"&gt;Some text&lt;/p&gt;
+</code></p>
+<p>Rather then reset all paragraph tags (&lt;P&gt;) and then adding spaces before and after manually with &lt;br /&gt; or inline styles</p>
+<p><code class="bad">P { margin: 0; padding: 0; }
+...
+&lt;p&gt;Some text&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Another paragraph&lt;/p&gt;
+&lt;p style="margin-top: 2em;"&gt;Another paragraph&lt;/p&gt;
+</code></p>
+<h4>Inline Styles</h4>
+<p>Avoid using inline styles ad much as possible</p>
+<p><code class="bad">&lt;p style="margin-top: 2em; color:blue;"&gt;A paragraph text&lt;/p&gt;</code></p>
+<p>Use classes instead</p>
+<p><code>&lt;p class="someClass"&gt;A paragraph text&lt;/p&gt;</code></p>
+<p>Why? Because if you do so then you don't need CSS file, you can format your document using HTML only. The idea behind CSS is to have all styles defined in one place, while your HTML code is clear of formatting. In example above, if you change style for P in your .css file, this won't affect the paragraph with inline tag, it will always remain with 2em top margin and blue text no matter how you format your css file.</p>
+<h4>Shorthand</h4>
+<p>Shorthands are convenient but sometimes hard to read.</p>
+<p><code>.text { font: 1em/1.1em bold italic small-caps Verdana, Arial, Helvetica, sans-serif; }</code></p>
+<p>Is the same as</p>
+<p><code>.text {
+    font-size: 10em;
+    line-height: 1.1em;
+    font-weight: bold;
+    font-style: italic;
+    font-variant: small-caps;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}</code></p>
+<p>But the second example is more readable. Use shorthands for the most obvious cases only, like this:</p>
+<p><code>.aClass { border:1px solid #0000FF; }</code></p>
+<p>Beause it's very easy to read, the same as:</p>
+<p><code>.aClass { border-width:1px; border-style: solid; border-color: #0000FF; }</code></p>
+<h4>Classes vs ID Selectors</h4>
+<p>If you don't have to reference specific object, it is strongly recommended to use class instead of id selectors especially if they share the same formatting.</p>
+<p>Instead of</p>
+<p><code class="bad">#div1 #listing { }
+#div2 #listing { }
+#div3 #listing { }
+</code></p>
+<p>Use</p>
+<p><code>&lt;style type="text/css"&gt;
+.listing { /* style definition */ }
+&lt;/style&gt;
+...
+&lt;ul class="listing"&gt;
+	&lt;li&gt;First item&lt;/li&gt;
+	&lt;li&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+...
+&lt;ul class="listing"&gt;
+	&lt;li&gt;The content&lt;/li&gt;
+&lt;/ul&gt;
+</code></p>
+<p>Use selectors only if:</p>
+<ol>
+<li>There will be only one object in the document.</li>
+<li>You have to reference that object in CSS or JavaScript.</li>
+</ol>
+<p>In all other cases use classes.</p>
+<h3>Units</h3>
+<h4>Font size</h4>
+<p>Always use <b>em</b> instead of pt, px, cm, ...</p>
+<p><code class="bad">
+&lt;style type="text/css"&gt;
+.title { font-size:18px; }
+&lt;/style&gt;
+</code></p>
+<p>This will keep your site more accessible and you can easy resize the entire site's font size if you need it bigger or smaller.</p>
+<p><code>
+&lt;style type="text/css"&gt;
+body { font-size: 80%; }
+.title { font-size: 2em; }
+&lt;/style&gt;
+</code></p>
+<h3>Coding style</h3>
+<h4>Layout</h4>
+<p>For shorter styles you can use one-line</p>
+<p><code>.title { font-size: 2em; }
+.otherClass { color:red; border:1px solid blue; padding:0.2em; margin: 0.5em 0; }
+</code></p>
+<p>But if you have many attributes, it's is much better and more readable if you separate it one per line:</p>
+<p><code>
+.someClass {
+	color:red;
+	border:1px solid blue;
+	padding:0.2em;
+	margin: 0.5em 0;
+	position: relative;
+	cursor: pointer;
+}
+</code></p>
+<p>Try to indent and block your css. If you have multiple selectors with same properties, separate them with comma (,) and indent</p>
+<p><code>&lt;style type="text/css"&gt;
+.class1,
+	class2,
+	class3,
+	class4 { font-size: 80%; }
+.otherClass { font-size: 2em; }
+&lt;/style&gt;
+</code></p>
+<p>Group your selectors together, if you have selectors that you use in the header, put then next to each other, even better, add comment:</p>
+<p><code>/* HTML Tags */
+
+BODY { background: #ffffff; }
+H1, H2, H3, H4, H5 { margin: 0.5em 0; padding: 0; font-weight: normal; }
+A { color: red; }
+
+/* Header */
+
+#header { border-bottom:1px solid black; }
+#header .subtitle { font-size: 2em; }
+#header H1 { color:red; border:1px solid blue; padding:0.2em; margin: 0.5em 0; }
+#header UL { list-style-type: none; }
+#header UL LI { margin:0; padding:0; float:left; }
+
+/* Main content */
+
+#container { margin-top:2em; }
+...
+</code></p>
+<p>It will look even more readable if you format it a bit like this:</p>
+<p><code>/* HTML Tags */
+
+BODY 			{ background: #ffffff; }
+H1, H2, H3, H4, H5	{ margin: 0.5em 0; padding: 0; font-weight: normal; }
+A 			{ color: red; }
+
+/* Header */
+
+#header		{ border-bottom:1px solid black; }
+#header .subtitle	{ font-size: 2em; }
+#header H1		{ color:red; border:1px solid blue; padding:0.2em; margin: 0.5em 0; }
+#header UL		{ list-style-type: none; }
+#header UL LI		{ margin:0; padding:0; float:left; }
+
+/* Main content */
+
+#container { margin-top:2em; }
+...
+</code></p>
+<h3>Best practice</h3>
+<h4>Position</h4>
+<p>Use external CSS files. Period.</p>
+<p>Put your stylesheets at the top of document. The HTML specification clearly states that stylesheets are to be included in the HEAD of the page.</p>
+<p><code>&lt;head&gt;
+...
+&lt;link rel="stylesheet" type="text/css" media="screen" href="cssfile1.css" /&gt;
+&lt;link rel="stylesheet" type="text/css" media="screen" href="cssfile2.css" /&gt;
+&lt;/head&gt;
+</code></p>
+<h4>Multiple CSS files</h4>
+<p>It is better to have one large css file rather than multiple small files because that way you reduce http requests and since browsers cache css, you will see the performance benefits right after the first page load.</p>
+<h4>@import</h4>
+<p>It's nice feature but poor performance. It has the same effect as using &lt;LINK&gt; at the bottom of the page.</p>
+<h4>Expressions</h4>
+<p>Never use expressions unless you absolutely have to. It is better and more compatible to use javascript if you need feature like that.</p>
+<p><code class="bad">.someclass { background-color: expression( (new Date()).getHours()%2 ? "#B8D4FF" : "#F08A00" ); }</code></p>
+<h4>Re-using styles</h4>
+<p>It is nice idea to reuse styles you already have but sometimes it is better to skip it. If you have your common styles (for example FORM formatting) and you include it in a new project where you <b>don't</b> have forms (or forms are very simple), it's just waste of bandwidth because you not only load more than you need, but you make additional http request for each css file which can lead to longer load time and poor performance.</p>
+<h4>Performance</h4>
+<p>Minify your css files. Math is very simple, if you have 5,000 visits each day (lets count that browser cache css so it doesn't load each time) and you have CSS file that is 25KB instead of 50KB, that is bandwidth <b>save</b> of 125.000 KB, or 122 MB. Daily. It's 3GB each month for a single CSS file. It's not difficult to imagine how much you save for all CSS and JS files, plus images... it can reduce bandwidth for more than 10GB a month on a single domain and it's very easy and simple to do.</p>
+<p>Reduce the number of DOM elements.</p>
+<p>Optimize images and if you use lot of icons, create one large image with all icons and create css styles using sprites</p>
+<p><code>IMG.icon { width:16px; height:16px; background:url(../icons.png) no-repeat; }
+IMG.icon.new { background-position: 0 -16px; }
+IMG.icon.save { background-position: -16px -16px; }
+...
+</code></p>
+<ul>
+<li><strong>Never use IDs in CSS</strong>, ever. They have no advantage over classes (anything you can do with an ID, you can do with a class), they cannot be reused, and their specificity is way, way too high. Even an infinite number of chained classes will not trump the specificity of one ID.</li>
+<li><strong>Do not nest selectors</strong> unnecessarily. If <code class="language-plaintext highlighter-rouge">.header-nav {}</code> will work, never use <code>.header .header-nav {}</code>; to do so will literally double the specificity of the selector without any benefit.</li>
+<li><strong>Do not qualify selectors</strong> unless you have a compelling reason to do so. If <code>.nav {}</code> will work, do not use <code class="language-plaintext highlighter-rouge">ul.nav {}</code>; to do so would not only limit the places you can use the <code class="language-plaintext highlighter-rouge">.nav</code> class, but it also increases the specificity of the selector, again, with no real gain.</li>
+<li><strong>Make heavy use of classes</strong> because they are the ideal selector: low specificity (or rather, all classes have the same specificity, so you have a level playing field), great portability, and high reusability.</li>
+</ul>
+<p><strong>tl;dr</strong> never use a selector more specific than the one you need.</p>
+<p>I would go with:</p>
+<pre><span style="color: #e03e2d;">
+<code>&lt;div class="controls primary"&gt;
+</code> &lt;button type = "button" &gt; Create &lt;/button&gt; &lt;/div&gt; &lt;div class=<span class="atv">"controls secondary"&gt; &lt;button type=<span class="atv">"button"&gt;Edit&lt;/button&gt; &lt;button type=<span class="atv">"button"&gt;Remove&lt;/button&gt; &lt;/div&gt;</span></span></span></span></pre>
+<p>As long as your CSS is structured correctly, <code>primary</code> and <code>secondary</code> shouldn't clash with anything else on your application:</p>
+<pre class="default prettyprint prettyprinted"><code>.controls.primary {}</code></pre>
+<p>Notice I've also put <code>controls</code> ahead of <code>primary</code>/<code>secondary</code> in the code as this is your main class.</p>
+<p>I think the first set beneath is a lot more readable than the second:</p>
+<pre class="default prettyprint prettyprinted"><code><span style="color: #e03e2d;">.<span style="color: #e03e2d;">controls.primary {}
+.controls.secondary {}
+
+
+.primary.controls {}
+.secondary.controls {}</span></span></code></pre>
+<p><time itemprop="dateCreated" datetime="2011-10-28T09:07:11"></time></p>
+<p>If you're interested in CSS class naming conventions I suggest to consider one very useful convention named <em>BEM</em> (<em>Block, Element, Modifier</em>).</p>
+<h3>UPDATE</h3>
+<p>Please read more about it here - <a href="http://getbem.com/naming/" rel="noreferrer">http://getbem.com/naming/</a> - that's a newer version that renders the following answer obsolete.</p>
+<hr>
+<p>Main principles:</p>
+<ul>
+<li>
+<p>A page is constructed from independent Blocks. Block is an HTML element which class name has a "b-" prefix, such as "b-page" or "b-login-block" or "b-controls".</p>
+</li>
+<li>
+<p>All CSS selectors are based on blocks. There shouldn't be any selectors that aren't started with "b-".</p>
+</li>
+</ul>
+<p>Good:</p>
+<pre class="default prettyprint prettyprinted"><code>.b-controls .<span class="kwd">super-control { ... }</span></code></pre>
+<p>Bad:</p>
+<pre class="default prettyprint prettyprinted"><code>.<span class="kwd">super-control { ... }</span></code></pre>
+<ul>
+<li>If you need another block (on the another page maybe) that is similar to block you already have, you should add a modifier to your block instead of creating a new one.</li>
+</ul>
+<p><br>Example:</p>
+<pre class="default prettyprint prettyprinted"><code>&lt;div class=<span class="atv">"b-controls"&gt;
+    &lt;div class=<span class="atv">"super-control"&gt;&lt;/div&gt;
+    &lt;div class=<span class="atv">"really-awesome-control"&gt;&lt;/div&gt;
+&lt;/div&gt;</span></span></span></code></pre>
+<p>With modifier:</p>
+<pre class="default prettyprint prettyprinted"><code>&lt;div class=<span class="atv">"b-controls mega"&gt; <span class="com">&lt;!-- this is the modifier --&gt;
+    &lt;div class=</span></span></code><span class="atv">"super-control"&gt;&lt;/div&gt; &lt;div class=<span class="atv">"really-awesome-control"&gt;&lt;/div&gt; &lt;/div&gt;</span></span></pre>
+<p>Then you can specify any modifications in CSS:</p>
+<pre class="default prettyprint prettyprinted"><code>.b-controls { font: <span class="lit">14px <span class="typ">Tahoma; }
+.b-controls .<span class="kwd">super-control { width: <span class="lit">100px; }
+
+<span class="com">/* Modified block */
+.b-controls.mega { font: <span class="lit">20px <span class="typ">Supermegafont; }
+.b-controls.mega .<span class="kwd">super-control { width: <span class="lit">300px; }</span></span></span></span></span></span></span></span></span></code></pre>
+<p>If you have any questions I'd be pleased to discuss it with you. I've been using <em>BEM</em> for two years and I claim that this is the best convention I've ever met.</p>
+<div class="s-prose js-post-body" itemprop="text">
+<p>On a web page, there are two blocks of controls (primary and secondary), what class names would most people use?</p>
+<p><strong>Choice 1:</strong></p>
+<pre class="default prettyprint prettyprinted"><code>&lt;div class=<span class="atv">"primary controls"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Create&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class=<span class="atv">"secondary controls"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Edit&lt;/button&gt;
+ &lt;button type=<span class="atv">"button"&gt;Remove&lt;/button&gt;
+&lt;/div&gt;</span></span></span></span></span></code></pre>
+<p><strong>Choice 2:</strong></p>
+<pre class="default prettyprint prettyprinted"><code>&lt;div class=<span class="atv">"primary-controls controls"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Create&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class=<span class="atv">"secondary-controls controls"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Edit&lt;/button&gt;
+ &lt;button type=<span class="atv">"button"&gt;Remove&lt;/button&gt;
+&lt;/div&gt;<br><br>=====================================</span></span></span></span></span></code></pre>
+<div class="s-prose js-post-body" itemprop="text">
+<p>I would go with:</p>
+<p>===========================</p>
+<pre class="default prettyprint prettyprinted"><code>&lt;div class=<span class="atv">"controls primary"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Create&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class=<span class="atv">"controls secondary"&gt;
+ &lt;button type=<span class="atv">"button"&gt;Edit&lt;/button&gt;
+ &lt;button type=<span class="atv">"button"&gt;Remove&lt;/button&gt;
+&lt;/div&gt;</span></span></span></span></span></code></pre>
+<p>As long as your CSS is structured correctly, <code>primary</code> and <code>secondary</code> shouldn't clash with anything else on your application:</p>
+<pre class="default prettyprint prettyprinted"><code>.controls.primary {}</code></pre>
+<p>Notice I've also put <code>controls</code> ahead of <code>primary</code>/<code>secondary</code> in the code as this is your main class.</p>
+<p>I think the first set beneath is a lot more readable than the second:</p>
+<pre class="default prettyprint prettyprinted"><code>.controls.primary {}
+.controls.secondary {}
+
+
+.primary.controls {}
+.secondary.controls {}</code></pre>
+</div>
+<time itemprop="dateCreated" datetime="2011-10-28T09:07:11"></time>
+<pre class="default prettyprint prettyprinted"><code></code></pre>
+</div>            
+                        
+                        
+    <hr /></nav>
+</main>
+        <aside>
+            <img src="https://avatars2.githubusercontent.com/u/71543232??&amp;s=460" alt="Dinesh Bishnoi" href="/"
+                class="profilepic" width="100px" height="100px">
+            <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+                <span itemprop="name"><strong>Dinesh Bishnoi</strong></span>
+                <span itemprop="jobtitle" style="display:block">Watchman</span>
+                <div itemprop="addressCountry" style="display:block">India</span>
+                </div>
+                <a rel="me" href="https://facebook.com/din.bish">Facebook</a> - <a href="https://github.com/a6147z">Github</a>
+           </div>
+       </aside><hr />
+       <footer><h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. 
+        Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong>by <a href="https://www.cleartheme.com">ClearTheme</a></h5>
+    </footer></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'UA-177222023-1');</script>
+</body>
+</html>

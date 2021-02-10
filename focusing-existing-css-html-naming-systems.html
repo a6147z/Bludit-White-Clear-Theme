@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+          <div class="grid">
+               <header>
+                    <h1><a href="" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+                    <h3>A simpler Occam's Razor theory of Shakuni's Evangel.</h3> 
+               </header>
+               <div class="categories">
+                    <div class="tag"><a href="category/CSS"> CSS </a></div>
+                    <div class="tag"><a href="category/folders"> Folders </a></div>
+                    <div class="tag"><a href="category/general"> General </a></div>
+                    <div class="tag"><a href="category/php"> PHP </a></div>
+               </div>              
+               <main style="clear:both;">
+                 <hr />
+                    <nav>
+                        
+                        
+                         <p>For any convention you choose, I'd suggest you pick requirements that targets your project's needs. Namely: is your project small or huge? is your project going to be reused or need to handle some kind of theming? Are the devs working on the CSS/HTML keen or experienced-enough to stick with conventions? &amp; so on..</p>
+                         <p>First, if you are not aware of this common (good?) practice: <strong>avoid IDs as styling hooks, try to only use Classes</strong> Because:</p>
+                         <ul>
+                         <li>only very few blocks (ie. page-header, page-footer) can 100% guarantee the fact that they will not be reused elsewhere.</li>
+                         <li>you want to keep specificity low, there will always be times you need to override it (without using an extra ID selector or !important)</li>
+                         </ul>
+                         <h3>Common requirements/conventions:</h3>
+                         <ul>
+                         <li>Names should be intuitive/meaningful</li>
+                         <li>Do NOT abbreviate names unless its a really well known abbreviation (ie. msg for Message, accnt for account)</li>
+                         <li>Use known/common names: .site-nav, .aside-nav, .global-head, .btn-primary, .btn-secondary</li>
+                         <li>Allow structural hierarchy (ie. BEM convention)</li>
+                         <li>Use <code>-</code> or <code>_</code> in naming: probably subjective (devs' opinions) &amp; depending on the keyboard languages used. Note that camelCase has been left aside for browser-compatibility issues I believe, although I never found a proof for this.</li>
+                         <li>Never use elements in selectors unless exceptional case: this allows for more flexibility, ie. you have buttons you created using <code>&lt;input type="button"&gt;&lt;/input&gt;</code> and you want to switch to using <code>&lt;button&gt;&lt;/button&gt;</code>, if you used element types in some selectors then you can plan some annoying/time-consuming refactoring/testing/prod-bug-fixing, whereas if you use element-less selectors then the switch will be infinitely easier. SMACCS also has it in its conventions</li>
+                         <li>For states, try to match known conventions from other languages (PHP, java, c#): ie. use "is-active", "is-badass" and so on</li>
+                         <li>Name from left-to-right: from the most generic to the most precise, ie. <code>btn-bluetheme-create-accnt</code> or <code>accordion-modernlook-userlist</code></li>
+                         <li>a class or id name should always be specific enough to be searched across a whole project &amp; return only the relevant results</li>
+                         <li>Prefer direct descendant if you use descendant selectors - use <code>.module-name &gt; .sub-module-name</code> vs <code>.module-name .sub-module-name</code> - you'll save yourself some headache in the future (simpler CSS but also more performant, although the term "CSS performance might be laughable")</li>
+                         </ul>
+                         <h3>Known conventions:</h3>
+                         <p><strong><em>Structural naming convention:</em></strong> name element's class by describing what it is, rather than where it is or how it looks. See examples below.</p>
+                         <pre class="lang-html prettyprint prettyprinted"><code><span class="pln">.page-container
+                              .page-wrap-header-n-content
+                              .page-header
+                                   .branding-logo
+                                   .branding-tagline
+                                   .wrapper-search
+                                   .page-nav-main
+                              .page-main-content
+                              .page-secondary-content
+                                   .nav-supplementary
+                              .page-footer
+                                   .site-info</span></code></pre>
+                         <p><strong><em>Presentational naming convention:</em></strong> name element's class by describing its location and/or appearance. See examples below.</p>
+                         <pre class="lang-html prettyprint prettyprinted"><code><span class="pln">.theme-ocean-blue
+                         .theme-apricot-orange
+                         .skin-red-tango
+                         .skin-darkness</span></code></pre>
+                         <p><strong><em>Semantic naming convention:</em></strong> name by describing the content it enclose. As in. See examples below.</p>
+                         <pre class="lang-html prettyprint prettyprinted"><code><span class="pln">.product-review
+                         .notification
+                         .language-switch
+                         .currency-switch
+                         .list-of-friends
+                         .latest-status</span></code></pre>
+                         <p><strong><em>BEM naming convention:</em></strong> stands for "Block, Element, Modifier". Syntax is such as <code>&lt;module-name&gt;__&lt;sub-module-name&gt;--&lt;modifier-or-state&gt;</code>. Block is a the "main" container, a kind of module/component whatever you call it. Element is just a child component of the main component (the Block). Modifier is some kind of state. <em>Peculiarities:</em> the syntax (usage of dbl underscore &amp; dbl dash), &amp; child elements must contain their closest component's name. See examples below.</p>
+                         <pre class="lang-html prettyprint prettyprinted"><code><span class="pln">.nav-primary
+                         .nav-primary__list
+                         .nav-primary__item
+                         .nav-primary__link
+                         .nav-primary__link--is-active
+                         
+                         .grid
+                         .grid__item
+                         .grid__description
+                         .grid__img-wrap
+                         .grid__img
+                         
+                         .global-footer
+                         .global-footer__col
+                         .global-footer__header
+                         .global-footer__link</span></code></pre>
+                         <p><strong><em>OCSS naming convention:</em></strong> stands for Object Oriented CSS. Uses skins for branding purposes or consistency of design (ie. bg color, border color, ...). Abstracts the structural styles. Example of abstract structural style below. <a href="https://github.com/stubbornella/oocss/wiki" rel="noreferrer">Two main principles of OOCSS: separate structure &amp; skin, secondly separate container &amp; content.</a></p>
+                         <pre class="lang-html prettyprint prettyprinted"><code><span class="pln"> .global-width {
+                               min-width: 780px;    /* minimum width */
+                               max-width: 1400px;   /* maximum width */
+                               margin: 0 auto;      /* Centering using margin: auto */
+                               position: relative;  /* Relative positioning to create a positioning context for child elements */
+                               padding-left: 20px;
+                               padding-right: 20px;
+                               overflow: hidden;    /* Overflow set to "hidden" for clearfixing */
+                          }</span></code></pre>
+                         <hr>
+                         <h3>Some CSS guidelines:</h3>
+                         <p>There has been a "trend" to share your CSS styleguide, here are a few you can read to pick &amp; choose whatever seems to fit for your need (naming convention but also much more, this may be out of scope of your question):</p>
+                         <ul>
+                         <li><a href="http://github.com/styleguide/css/" rel="noreferrer">github.com/styleguide/css/</a></li>
+                         <li><a href="http://cssguidelin.es" rel="noreferrer">cssguidelin.es</a></li>
+                         <li><a href="http://css-tricks.com/sass-style-guide" rel="noreferrer">css-tricks.com/sass-style-guide</a></li>
+                         <li><a href="http://codepen.io/chriscoyier/blog/codepens-css" rel="noreferrer">codepen.io/chriscoyier/blog/codepens-css</a></li>
+                         </ul>
+                         <hr>
+                         <h3>My biased opinion:</h3>
+                         <p>I currently use a mix of <strong>BEM</strong>, <strong>semantic</strong> &amp; <strong>structural</strong> naming conventions &amp; it's been working out quite well.</p>
+                         <p><strong>BEM</strong> &amp; <strong>semantic</strong> working quite well together (yes, I name my classes such as <code>.list-of-friends__single-friend</code>). BEM makes things especially simpler: no nesting madness in the CSS &amp; very verbose code.</p>
+                         <p><strong>Structural</strong> naming convention is also welcome for the bare structure of the website, or each "template" if the website has several structures. This should, in my opinion again, be only used for very generic elements, so use carefully.</p>
+                         <p><strong>Presentational</strong> naming convention: really?? thanks, but no thanks. You may consider it in special cases (ie. skin a whole page in different themes).</p>
+                         <p><strong>OCSS</strong> naming convention: I have to admit, still got to look further into this. I provided links in the resources below for you to investigate further.</p>
+                         <hr>
+                         <h3>Resources:</h3>
+                         <ul>
+                         <li><a href="http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/" rel="noreferrer">http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/</a></li>
+                         <li><a href="http://getbem.com/" rel="noreferrer">http://getbem.com/</a></li>
+                         <li><a href="http://bem.info/method/definitions/" rel="noreferrer">http://bem.info/method/definitions/</a></li>
+                         <li><a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" rel="noreferrer">http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/</a></li>
+                         <li><a href="https://github.com/stubbornella/oocss/wiki" rel="noreferrer">https://github.com/stubbornella/oocss/wiki</a></li>
+                         <li><a href="https://css-tricks.com/semantic-class-names/" rel="noreferrer">https://css-tricks.com/semantic-class-names/</a></li>
+                         <li><a href="http://www.stuffandnonsense.co.uk/archives/naming_conventions_table.html" rel="noreferrer">http://www.stuffandnonsense.co.uk/archives/naming_conventions_table.html</a></li>
+                         <li><a href="http://sixrevisions.com/css/css-tips/css-tip-2-structural-naming-convention-in-css/" rel="noreferrer">http://sixrevisions.com/css/css-tips/css-tip-2-structural-naming-convention-in-css/</a></li>
+                         <li><a href="https://stackoverflow.com/questions/7927193/css-class-naming-convention">CSS class naming convention</a></li>
+                         <li><a href="https://stackoverflow.com/questions/1547986/can-i-use-camel-case-in-css-class-names">Can I use camel-case in CSS class names</a></li>
+                         <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Underscores_in_class_and_ID_Names" rel="noreferrer">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Underscores_in_class_and_ID_Names</a></li>
+                         <li><a href="https://softwareengineering.stackexchange.com/questions/141988/practical-considerations-for-html-css-naming-conventions-syntax">https://softwareengineering.stackexchange.com/questions/141988/practical-considerations-for-html-css-naming-conventions-syntax</a></li>
+                         <li><a href="http://smacss.com/book/type-module" rel="noreferrer">http://smacss.com/book/type-module</a></li>
+                         <li><a href="http://github.com/styleguide/css/" rel="noreferrer">github.com/styleguide/css/</a></li>
+                         <li><a href="http://cssguidelin.es" rel="noreferrer">cssguidelin.es</a></li>
+                         </ul>   
+                        
+    <hr /></nav>
+</main>
+        <aside>
+            <img src="https://avatars2.githubusercontent.com/u/71543232??&amp;s=460" alt="Dinesh Bishnoi" href="/"
+                class="profilepic" width="100px" height="100px">
+            <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+                <span itemprop="name"><strong>Dinesh Bishnoi</strong></span>
+                <span itemprop="jobtitle" style="display:block">Watchman</span>
+                <div itemprop="addressCountry" style="display:block">India</span>
+                </div>
+                <a rel="me" href="https://facebook.com/din.bish">Facebook</a> - <a href="https://github.com/a6147z">Github</a>
+           </div>
+       </aside><hr />
+       <footer><h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. 
+        Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong>by <a href="https://www.cleartheme.com">ClearTheme</a></h5>
+    </footer></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'UA-177222023-1');</script>
+</body>
+</html>

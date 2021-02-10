@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>A simpler Occam's Razor theory of Shakuni's Evangel. | EVANGELIST Shakuni's Blog</title>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="robots" content="index, follow" />
+          <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+          <link href="css/V01blue-blog_Cleartheme__min.css" rel="stylesheet">
+     </head>
+     <body>
+          <div class="grid">
+               <header>
+                    <h1><a href="" title="EVANGELIST Shakuni's  Blog">EVANGELIST Shakuni's  Blog</a></h1>
+                    <h3>A simpler Occam's Razor theory of Shakuni's Evangel.</h3> 
+               </header>
+               <div class="categories">
+                    <div class="tag"><a href="category/CSS"> CSS </a></div>
+                    <div class="tag"><a href="category/folders"> Folders </a></div>
+                    <div class="tag"><a href="category/general"> General </a></div>
+                    <div class="tag"><a href="category/php"> PHP </a></div>
+               </div>              
+               <main style="clear:both;">
+                 <hr />
+                    <nav>
+                         <h3>Flow Chart for Project Decision Making</h3>
+<pre> <small>
+                       +---------+
+                       |  START  | 
+                       +---------+
+                            |
+                            V            
+            YES       ----------------       NO
+      _______________/  DOES THE DAMN \_____________               
+      |              \   THING WORK ? /            |
+      V               ----------------             V    
++------------+                             -------------- 
+| DON'T FUCK |               _____________/ DID YOU FUCK \
+| WITH IT    |              |             \   WITH IT?   /
++------------+              | YES          --------------
+      |                     V                      |
+      |               +-------------+              | NO
+      |               |  YOU STUPID |              |
+      |               |   DUMBSHIT  |              |
+      |               +-------------+              |
+      |                      |                     |
+      |                 _____V_____                |
+      |            NO  /           \               |
+      |      _________/ DOES ANYONE \              |
+      |      |        \    KNOW?    /              |
+      |      |         \___________/               |
+      |      |               |                     |
+      |      |               | YES                 |
+      |      |               V                     V
+      |  +--------+   +-------------+  YES  ------------- 
+      |  |  HIDE  |   |   YOU POOR  |/____ /  WILL YOU   \
+      |  |   IT   |   |   BASTARD   |\     \ CATCH HELL? /
+      |  +--------+   +-------------+       ------------- 
+      |      |               |                     |
+      |      |               |                     | NO
+      |      |               V                     V
+      |      V        +-------------+       +------------+ 
+      +--------------&gt;|    STOP     |&lt;------| SHITCAN IT |
+                      +-------------+       +------------+
+      
+</small>
+</pre>
+<h4>Conditions</h4>
+<h5>If (not) empty</h5>
+<p>All conditions should like this</p>
+<p><code class="bad">if ($var == '')</code></p>
+<p>Or this one</p>
+<p><code class="bad">if ($var == 0)</code></p>
+<p>Should be</p>
+<pre><code>if (empty($var))</code></pre>
+<h4>isset() vs empty()</h4>
+<p>Allways use <var>!empty()</var> instead of <var>isset()</var>, except in case whare allowed values is '' or 0</p>
+<pre><code>if (!empty($data))
+{
+	// do something
+}</code></pre>
+<h4>Loop conditions</h4>
+<p>Try to avoid this</p>
+<p><code class="bad">for ($i = 0; $i &lt; strlen($sting); $i++)
+{
+	// do something
+}</code></p>
+<p>Use this instead</p>
+<pre><code>$l = strlen($sting);
+for ($i = 0; $i &lt; $l; $i++)
+{
+	// do something
+}</code></pre>
+<p>Because in first case condition will be calculated for each loop iteration.</p>
+<h4>Return Conditions</h4>
+<p>Try to simplify your code to use less lines specially for conditions like this:</p>
+<p><code class="bad">if ($something &gt; 45) 
+{
+	return true;
+}
+else
+{
+	return false;
+}</code></p>
+<p>This is nonsense and must always be changed to:</p>
+<pre><code>if ($something &gt; 45) 
+{
+	return true;
+}
+return false;</code></pre>
+<p>or on one line:</p>
+<pre><code>return ($something &gt; 45) ? true : false;</code></pre>
+<p>or even better:</p>
+<pre><code>return $something &gt; 45;</code></pre>
+<h3>Basic Requirements</h3>
+<p>PHP 5 code is required.</p>
+<p>All code must be E_STRICT-compatible. This means that it must not produce any warnings or errors when PHP's error reporting level is set to <var>E_ALL | E_STRICT</var>.</p>
+<h3>Layout and indentation</h3>
+<p>Indenting code is a must. Tabs size is 4 characters and your editor must insert TAB as TAB not as 4 SPACES</p>
+<h4>Array keys</h4>
+<p>Array keys must be quoted with single quote (')</p>
+<pre><code>echo $row['something'];</code></pre>
+<h4>Strings</h4>
+<p>Strings can be with single or double quote</p>
+<pre><code>$s = "This is 1st example";
+$s = 'This is 1st example';
+</code></pre>
+<h4>PHP variables in string</h4>
+<p>Must be in brackets, instead of this:</p>
+<p><code class="bad">$s = "This is $variable example";</code></p>
+<p>Use this</p>
+<pre><code>$s = "This is {$variable} example";</code></pre>
+<p>or</p>
+<pre><code>$s = 'This is '.$variable.' example';</code></pre>
+<h4>Comments</h4>
+<p>Comment code ad much as possible and as long as it makes sense.</p>
+<pre><code>
+/**
+ * This is what function does
+ * 
+ * @access public
+ * @param $var1 (string) - username
+ * @param $var2 (int) - user id
+ * @return bool
+ */
+
+public function getUser ($var1, $var2 = 0)
+{
+	// do something
+	return true;
+}
+</code></pre>
+<p>Also use one line comments when needed</p>
+<pre><code>$activated = User::isValid(); // check if user activated account</code></pre>
+<p>No need to comment obvious things</p>
+<p><code class="bad">while ($i &lt; $something)
+{
+	...
+	$i++; // increment $i by one &lt;- <b>THIS IS STUPID COMMENT</b>
+}</code></p>
+<h3>Basic rules</h3>
+<p>Equal sign (=) must have at least one space before and one after</p>
+<pre><code>$a = 'something';</code></pre>
+<p>If you have more assignments one after another, try to align =</p>
+<pre><code>$a       = 'something';
+$another = 45;</code></pre>
+<p>Compare sign (==, =&gt;, &gt;, &lt;, &lt;=, !=) also need minimum one space before and after</p>
+<pre><code>if ($condition == 'I know')</code></pre>
+<h4>If else</h4>
+<p>Always use brackets { } even for simple if () statement</p>
+<pre><code>if ($condition == CONSTANT)
+{
+	$this-&gt;doSomethingCool ($condition);
+}
+</code></pre>
+<p>If you have more similar if/else statements, you can align brackets but you still have to use brackets:</p>
+<pre><code>if ($condition == CONSTANT)	{ $this-&gt;doSomethingCool ($condition); }
+elseif ($condition = 24)	{ Object::staticFunction (); }
+else				{ $this-&gt;doOtherThing (); }
+</code></pre>
+<p>Between "if", "for", "switch", "foreach" and () must be one space</p>
+<h6>Example</h6>
+<pre><code>if ($condition == CONSTANT)
+{
+	$this-&gt;doSomethingCool ($condition);
+}
+elseif ($condition = 24 || !empty($stuff))
+{
+	Object::staticFunction ();
+}
+elseif ($condition == 'I know')
+{
+	Another_Object::newStaticFunction ();
+}
+else
+{
+	$this-&gt;doOtherThing ();
+}
+
+
+public static function functionName ($variable_one, $variable_two = '')
+{
+	if ($something)
+	{
+		$this-&gt;get();
+	}
+}
+</code></pre>
+<h5>Multiple conditions</h5>
+<p>If you have if statements with long multiple conditions try to separate in different lines</p>
+<pre><code>if ($something == 'Something' &amp;&amp; $another_thing &gt; 45)
+{
+	// do something
+}
+</code></pre>
+<p>For more complex conditions split in 2 lines</p>
+<pre><code>if (($something == 'Something' &amp;&amp; $another_thing &gt; 45)
+	|| (User::isValid() &amp;&amp; $product-&gt;id))
+{
+	// do something
+}
+</code></pre>
+<p>Or even better</p>
+<pre><code>if (  ($something == 'Something' &amp;&amp; $another_thing &gt; 45)
+   || (User::isValid() &amp;&amp; $product-&gt;id)
+   )
+{
+	// do something
+}
+</code></pre>
+<h4>Conditions order</h4>
+<p>If you have multiple conditions put the most common condition first.</p>
+<pre><code>if (!empty($var) &amp;&amp; $var == 'something')</code></pre>
+<p>So the second condition never checks if the first one is false ( $var is empty )</p>
+<h4>Switch</h4>
+<pre><code>switch ($condition)
+{
+	case 'something':
+
+		// do something here
+		break;
+
+	case 48:
+		// do the stuff
+		// no break; - if you need case with no "break" you have to write comment
+
+	case SOME_CONSTANT:
+	default:
+		
+		// do some magic
+		break;
+}
+</code></pre>
+<h3>Functions</h3>
+<h4>Function variables</h4>
+<p>All function variables must be</p>
+<ul>
+<li>Required variables first</li>
+<li>Variables with default values last</li>
+</ul>
+<pre><code>function someFunction (<b>$var1</b>)
+{
+	// function body
+}
+
+function otherFunction (<b>$var1, $variable_two</b>)
+{
+	// function body
+}
+
+function thirdFunction (<b>$var1, $variable_two = 'default'</b>)
+{
+	// function body
+}</code></pre>
+<p>Functions with default variables as first parameters are just plain stupid</p>
+<p><code class="bad">function thirdFunction (<b>$var1 = 'default'</b>, $variable_two)
+{
+	// function body
+}</code></p>
+<p>Try to avoid more than 4-5 function parameters, but if you absolutely need it, then separate in several lines:</p>
+<pre><code>function thirdFunction ($var1,
+	$another_variable,
+	$third_variable, 
+	$yet_another_variable = 44, 
+	$variable_two = 'default')
+{
+	// function body
+}</code></pre>
+<h3>Loops</h3>
+<h4>Array loops</h4>
+<p>For single dimension arrays user <var>$val</var> for array values and <var>$key</var> for array keys</p>
+<pre><code>foreach ($item as $key =&gt; <b>$val</b>)
+{
+	// do something here
+}</code></pre>
+<h4>Multidimensional array loops</h4>
+<p>For multi dimension arrays user <var>$row</var> for array values and <var>$key</var> for array keys</p>
+<pre><code>foreach ($data as $key =&gt; <b>$row</b>)
+{
+	// do something here
+}</code></pre>
+<h4>Nested loops</h4>
+<pre><code>foreach ($data as $key =&gt; $row)
+{
+	// do something here
+
+	foreach ($row as $k =&gt; $v)
+	{
+		// do this for this row
+	}
+}</code></pre>
+<h4>For loops and counters</h4>
+<pre><code>for ($i = 0; $i &lt; 5; $i++)
+{
+	// do something
+}</code></pre>
+<h4>Nested For loops</h4>
+<pre><code>for ($i = 0; $i &lt; 5; $i++)
+{
+	// do something
+	for ($j = $i; $j &lt; 100; $j++)
+	{
+		// do something
+	}
+}</code></pre>
+<h3>Operators</h3>
+<p>Always use space between operators</p>
+<p><code class="bad">$a=$something*$b+$i</code></p>
+<p>Replace it with:</p>
+<pre><code>$a = $something * $b + $i;</code></pre>
+<p>Except for string concatenation</p>
+<pre><code>$s = 'This is my '.$order.' example';</code></pre>
+<p>Or</p>
+<pre><code>$s = 'And this is my '.($order + 1).' example';</code></pre>
+<p>Or</p>
+<pre><code>$s = 'And this is my '.round (max ($order / 100) * 100).'% example';</code></pre>
+<h3>Exceptions</h3>
+<pre><code>try {
+	if (!App::dosomething())
+	{
+		throw new Exception('Hey, we screwed up');
+	}
+
+	// do whatever you wanted to do
+
+} catch (Exception $e) { customExceptionHandler ($e); }
+</code></pre>
+<h3>Include() and require()</h3>
+<p>Include and require are statements not functions therefore use it like this:</p>
+<pre><code>include "/path/to/file/some.php";
+require "/path/to/file/some.php";
+</code></pre>
+<p>Preferred methods are require_once and include_once</p>
+<pre><code>include_once "/path/to/file/some.php";
+require_once "/path/to/file/some.php";
+</code></pre>
+<h2>Names</h2>
+<h3>Naming variables, functions, classes and files</h3>
+<h4>Variables</h4>
+<p>All variables must be lowercase with underscore for "space"</p>
+<pre><code>$a = 'something';
+$another_var = 49;
+$yet_another_long_var = 48;</code></pre>
+<h4>Arrays and loops</h4>
+<p>Arrays follow the same rule for variables, except data from database should be named $data, and in loops should always have $key =&gt; $row pairs</p>
+<pre><code>foreach ($data as $key =&gt; $row)
+{
+	echo $row['something'];
+}</code></pre>
+<p>or if you don't need keys</p>
+<pre><code>foreach ($data as $row)
+{
+	echo $row['something'];
+}</code></pre>
+<h4>Functions</h4>
+<p>Functions must follow camelCaseConvention, which means no spaces and no underscores, lowercase with first letter of each word - uppercase (except the first word)</p>
+<pre><code>function fetch ()
+{
+	...
+}
+
+function anotherFunction ()
+{
+	...
+}
+
+function yetAnotherLongFunction ()
+{
+	...
+}
+</code></pre>
+<p>All names should be descriptive and explain what function does or returns.</p>
+<h4>Classes</h4>
+<p>Class names are lowercase with each first letter uppercase and underscore ("_") for space</p>
+<pre><code>class Database
+{
+	...
+}
+
+class Mysql_Database
+{
+	...
+}
+
+class My_Other_Class_Name
+{
+	...
+}
+</code></pre>
+<p>At the end of each class add comment: // end of class</p>
+<pre><code>class User extends Object
+{
+} // end of class</code></pre>
+<h4>Files</h4>
+<p>Classes should be saved as {$class_name}.php</p>
+<pre><code>require_once "Database.php";
+require_once "My_Other_Class_Name.php";</code></pre>
+<h4>Common variables</h4>
+<p>All counters must be named as <var>$i</var>. If you have more than one counter, use the next letter: <var>$j</var>, <var>$k</var>, <var>$l</var>...</p>
+<pre><code>for ($i = 0; $i &lt; 100; $i++)</code></pre>
+<p>All temporary variables must be called <var>$temp</var> or <var>$tmp;</var></p>
+<pre><code>for ($i = 0; $i &lt; 100; $i++)
+{
+	$temp  = $a[$i];
+	$a[$i] = $b[$i];
+	$b[$i] = $temp;
+}</code></pre>
+<h3>Function names</h3>
+<p>Try to use as descriptive names as possible, but avoid to many words or to long names.</p>
+<p>If you have class User and function to validate if this use is valid or not, instead of this</p>
+<p><code class="bad">if (User::isValidUser ())</code></p>
+<p>Or even worse</p>
+<p><code class="bad">if (User::checkIfThisUserIsValidAndActivated ())</code></p>
+<p>Use this</p>
+<pre><code>if (User::isValid ())</code></pre>
+<p>Because there's no need to repeat word "User" since it's already in the class name</p>
+<h4>Function prefix</h4>
+<p>All functions that return some $variable should be prefixed with "<b>get</b>".</p>
+<pre><code>$username = getUsername ();
+$data = $object-&gt;getLastItem ();
+$user = Class_Name::getUserById ($id);
+</code></pre>
+<p>All functions that set object variable should be prefixed with "<b>set</b>"</p>
+<pre><code>setUsername ($username);
+$object-&gt;setLastItem ($item);
+Class_Name::setUserId ($id);
+</code></pre>
+<h3>Constants</h3>
+<h4>Global Constants</h4>
+<p>All global constants (constants that are used everywhere in application, not just single class) must be uppercase</p>
+<pre><code>define ('USER_TIMEOUT', '3000');
+define ('LIMIT_POSTS', 15);</code></pre>
+<h4>Class constants</h4>
+<p>Constants that are used in a single class should be defined as class constants, not global constants. Uppercase but without prefix, and must be defined first before any other class variable</p>
+<pre><code>class User
+{
+	const LIMIT   = 2;
+	const ANOTHER = 'test';
+}
+
+echo User::LIMIT;
+</code></pre>
+<h3>Test Values</h3>
+<h4>Dummy variables</h4>
+<p>All test variables should follow those rules</p>
+<pre><code>$url = "www.example.com";
+$string = "dummy";		// dummy strings
+$temp = 'some temp value';	// temporary values
+</code></pre>
+<h2>Appendix</h2>
+<h3>PHPMyAdmin</h3>
+<p>Try to avoid PHP My Admin for table creation because it has problems with default values. It's great product for browsing and simple database manipulation but it makes you lazy and you usually forget to keep history of table alteration and other changes.</p>
+<p><strong>PascalCase </strong></p>
+<ol>
+<li>Begin with an uppercase letter</li>
+<li>Preferably a noun e.g. Car, Bird, MountainBike</li>
+<li>Avoid acronyms and abbreviations</li>
+<li>Declare class properties before methods</li>
+</ol>
+<pre><code>&lt;?php<br>class SportTeam<br>
+{   const MAX_PLAYER = 24;<br>
+    private $name;<br>
+    public function getName()
+{   return $this-&gt;name;<br>
+}
+}<br>
+?&gt;</code></pre>
+<p><strong>Interface Naming: PascalCase</strong></p>
+<p>Begin with an uppercase letter<br>Avoid acronyms and abbreviations<br>Suffix interfaces with Interface</p>
+<pre><code>&lt;?php<br>interface BookableInterface<br>{    ...}<br>?&gt;</code></pre>
+<p><strong>Method Naming: camelCase</strong></p>
+<p>Begin with a lowercase letter<br>Preferably a verb e.g. getCar(), purchase(), book()<br>If the name contains multiple words, start it with a lowercase&lt;br?&gt; letter followed by an uppercase letter e.g. getJsonParser()</p>
+<pre><code>&lt;?php<br>function sayHelloWorld() { ...}?&gt;</code></pre>
+<p><strong> Variable Naming: camelCase</strong></p>
+<p>Begin with a lowercase e.g. id, name.<br>If multiple words: start it with the lowercase letter followed by an uppercase letter e.g. emailAddress, firstName<br>Avoid using underscore or dash<br>Avoid one-character variables e.g. a, b Cannot start with a number</p>
+<pre><code>&lt;?php<br>$fullName = 'John Doe';<br>$emailAddress = 'john.doe@domain.com';<br>?&gt;</code></pre>
+<p><strong>Namespaces Naming: PascalCase</strong></p>
+<p>Begin with an uppercase letter<br>Use namespaces for all the PHP classes<br>Add a use statement for all the classes that are not part of the global namespace</p>
+<pre><code>&lt;?php<br>namespace App\Models;<br>use App\Services\AvatarGenerator;<br>class SportTeam<br>{  <br>    // code snippet<br>    // any class of the namespace can be used<br>    // other class needs to be registered with "use"<br>}<br>?&gt;</code></pre>
+                        
+               
+                        
+    <hr /></nav>
+</main>
+        <aside>
+            <img src="https://avatars2.githubusercontent.com/u/71543232??&amp;s=460" alt="Dinesh Bishnoi" href="/"
+                class="profilepic" width="100px" height="100px">
+            <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+                <span itemprop="name"><strong>Dinesh Bishnoi</strong></span>
+                <span itemprop="jobtitle" style="display:block">Watchman</span>
+                <div itemprop="addressCountry" style="display:block">India</span>
+                </div>
+                <a rel="me" href="https://facebook.com/din.bish">Facebook</a> - <a href="https://github.com/a6147z">Github</a>
+           </div>
+       </aside><hr />
+       <footer><h5> CopyLeft License: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>. 
+        Proudly <strong>&lt;&#8725;&gt;</strong> with<strong> ♥ </strong>by <a href="https://www.cleartheme.com">ClearTheme</a></h5>
+    </footer></div><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177222023-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'UA-177222023-1');</script>
+</body>
+</html>
